@@ -70,3 +70,5 @@ GR_ADD_TEST(qa_carrier_modulation ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DI
 GR_ADD_TEST(qa_byte_interleaver ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_byte_interleaver.py)
 GR_ADD_TEST(qa_energy_dispersal ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_energy_dispersal.py)
 GR_ADD_TEST(qa_tmcc_encoder ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tmcc_encoder.py)
+GR_ADD_TEST(qa_hierarchical_divisor ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_hierarchical_divisor.py)
+GR_ADD_TEST(qa_tsp_resize ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tsp_resize.py)

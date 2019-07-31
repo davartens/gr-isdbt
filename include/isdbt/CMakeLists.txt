@@ -50,5 +50,7 @@ install(FILES
     carrier_modulation.h
     byte_interleaver.h
     energy_dispersal.h
-    tmcc_encoder.h DESTINATION include/isdbt
+    tmcc_encoder.h
+    hierarchical_divisor.h
+    tsp_resize.h DESTINATION include/isdbt
 )

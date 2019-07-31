@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<block>
+  <name>Tsp Resize</name>
+  <key>isdbt_tsp_resize</key>
+  <category>ISDBT</category>
+  <import>import isdbt</import>
+  <make>isdbt.tsp_resize()</make>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+    <vlen>204</vlen>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+    <vlen>188</vlen>
+  </source>
+</block>

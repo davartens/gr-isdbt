@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<block>
+  <name>Hierarchical Divisor</name>
+  <key>isdbt_hierarchical_divisor</key>
+  <category>ISDBT</category>
+  <import>import isdbt</import>
+  <make>isdbt.hierarchical_divisor($mode, $cp, $segments_A, $mod_scheme_A, $conv_code_A, $segments_B, $mod_scheme_B, $conv_code_B, $segments_C, $mod_scheme_C, $conv_code_C)</make>
+  
+  <param>
+     <name>Transmission Mode</name>
+   <key>mode</key>
+   <value>1</value>
+   <type>enum</type>
+     <option>
+     <name>MODE1(2K)</name>
+     <key>1</key>
+     </option>
+   <option>
+     <name>MODE2(4K)</name>
+     <key>2</key>
+   </option>
+   <option>
+     <name>MODE3(8K)</name>
+     <key>3</key>
+   </option>
+ </param>
+
+
+ <param>
+  <name>Guard Interval</name>
+  <key>cp</key>
+  <value>0.125</value>
+  <type>enum</type>
+  <option>
+    <name>1/4</name>
+    <key>0.250</key>
+  </option>
+  <option>
+    <name>1/8</name>
+    <key>0.125</key>
+  </option>
+  <option>
+    <name>1/16</name>
+    <key>0.0625</key>
+  </option>
+    <option>
+    <name>1/32</name>
+    <key>0.03125</key>
+    </option>
+</param>
+
+  <param>
+    <name>Layer A Segments</name>
+    <key>segments_A</key>
+    <type>int</type>
+  </param>
+
+ <param>
+     <name>Modulation Scheme A</name>
+   <key>mod_scheme_A</key>
+   <value>2</value>
+   <type>enum</type>
+   <option>
+     <name>QPSK</name>
+     <key>2</key>
+   </option>
+   <option>
+     <name>16QAM</name>
+     <key>4</key>
+   </option>
+   <option>
+     <name>64QAM</name>
+     <key>6</key>
+   </option>
+ </param>
+
+ <param>
+  <name>Convolutional Coding Rate A</name>
+  <key>conv_code_A</key>
+  <value>0.5</value>
+  <type>enum</type>
+  <option>
+    <name>1/2</name>
+    <key>0.5</key>
+  </option>
+  <option>
+    <name>2/3</name>
+    <key>0.66666666</key>
+  </option>
+  <option>
+    <name>3/4</name>
+    <key>0.75</key>
+  </option>
+    <option>
+    <name>5/6</name>
+    <key>0.83333333</key>
+    </option>
+        <option>
+    <name>7/8</name>
+    <key>0.875</key>
+    </option>
+  <option>
+    <name>Unused</name>
+    <key>1</key>
+    </option>
+</param>
+
+
+  <param>
+    <name>Layer B Segments</name>
+    <key>segments_B</key>
+    <type>int</type>
+  </param>
+
+ <param>
+     <name>Modulation Scheme B</name>
+   <key>mod_scheme_B</key>
+   <value>2</value>
+   <type>enum</type>
+   <option>
+     <name>QPSK</name>
+     <key>2</key>
+   </option>
+   <option>
+     <name>16QAM</name>
+     <key>4</key>
+   </option>
+   <option>
+     <name>64QAM</name>
+     <key>6</key>
+   </option>
+ </param>
+
+ <param>
+  <name>Convolutional Coding Rate B</name>
+  <key>conv_code_B</key>
+  <value>0.5</value>
+  <type>enum</type>
+  <option>
+    <name>1/2</name>
+    <key>0.5</key>
+  </option>
+  <option>
+    <name>2/3</name>
+    <key>0.66666666</key>
+  </option>
+  <option>
+    <name>3/4</name>
+    <key>0.75</key>
+  </option>
+    <option>
+    <name>5/6</name>
+    <key>0.83333333</key>
+    </option>
+        <option>
+    <name>7/8</name>
+    <key>0.875</key>
+    </option>
+  <option>
+    <name>Unused</name>
+    <key>1</key>
+    </option>
+</param>
+
+  <param>
+    <name>Layer C Segments</name>
+    <key>segments_C</key>
+    <type>int</type>
+  </param>
+
+ <param>
+     <name>Modulation Scheme C</name>
+   <key>mod_scheme_C</key>
+   <value>2</value>
+   <type>enum</type>
+   <option>
+     <name>QPSK</name>
+     <key>2</key>
+   </option>
+   <option>
+     <name>16QAM</name>
+     <key>4</key>
+   </option>
+   <option>
+     <name>64QAM</name>
+     <key>6</key>
+   </option>
+ </param>
+
+ <param>
+  <name>Convolutional Coding Rate C</name>
+  <key>conv_code_C</key>
+  <value>0.5</value>
+  <type>enum</type>
+  <option>
+    <name>1/2</name>
+    <key>0.5</key>
+  </option>
+  <option>
+    <name>2/3</name>
+    <key>0.66666666</key>
+  </option>
+  <option>
+    <name>3/4</name>
+    <key>0.75</key>
+  </option>
+    <option>
+    <name>5/6</name>
+    <key>0.83333333</key>
+    </option>
+        <option>
+    <name>7/8</name>
+    <key>0.875</key>
+    </option>
+  <option>
+    <name>Unused</name>
+    <key>1</key>
+    </option>
+</param>
+
+
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+    <vlen>204*pow(2, 9+$mode)*(1+$cp)</vlen>
+  </sink>
+  <source>
+    <name>out0</name>
+    <type>byte</type>
+    <vlen>204*$segments_A*$mod_scheme_A*$conv_code_A*96*pow(2, $mode - 1)/8</vlen>
+  </source>
+    <source>
+    <name>out1</name>
+    <type>byte</type>
+    <vlen>204*$segments_B*$mod_scheme_B*$conv_code_B*96*pow(2, $mode - 1)/8</vlen>
+  </source>
+    <source>
+    <name>out2</name>
+    <type>byte</type>
+    <vlen>204*$segments_C*$mod_scheme_C*$conv_code_C*96*pow(2, $mode - 1)/8</vlen>
+  </source>
+</block>

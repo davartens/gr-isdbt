@@ -46,5 +46,7 @@ install(FILES
     isdbt_carrier_modulation.xml
     isdbt_byte_interleaver.xml
     isdbt_energy_dispersal.xml
-    isdbt_tmcc_encoder.xml DESTINATION share/gnuradio/grc/blocks
+    isdbt_tmcc_encoder.xml
+    isdbt_hierarchical_divisor.xml
+    isdbt_tsp_resize.xml DESTINATION share/gnuradio/grc/blocks
 )

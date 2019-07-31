@@ -36,6 +36,8 @@
 #include "isdbt/byte_interleaver.h"
 #include "isdbt/energy_dispersal.h"
 #include "isdbt/tmcc_encoder.h"
+#include "isdbt/hierarchical_divisor.h"
+#include "isdbt/tsp_resize.h"
 %}
 
 
@@ -101,3 +103,7 @@ GR_SWIG_BLOCK_MAGIC2(isdbt, byte_interleaver);
 GR_SWIG_BLOCK_MAGIC2(isdbt, energy_dispersal);
 %include "isdbt/tmcc_encoder.h"
 GR_SWIG_BLOCK_MAGIC2(isdbt, tmcc_encoder);
+%include "isdbt/hierarchical_divisor.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, hierarchical_divisor);
+%include "isdbt/tsp_resize.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, tsp_resize);
