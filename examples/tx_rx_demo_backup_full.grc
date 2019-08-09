@@ -801,7 +801,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/lingles/fing/proyecto/full_rxtx.ts</value>
+      <value>/home/david/Desktop/Proyecto/txrx.ts</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -821,7 +821,7 @@
     </param>
     <param>
       <key>unbuffered</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>vlen</key>
@@ -978,7 +978,7 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>384</value>
+      <value>384*6</value>
     </param>
   </block>
   <block>
@@ -1952,7 +1952,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 412)</value>
+      <value>(576, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2094,7 +2094,7 @@
     </param>
     <param>
       <key>segments</key>
-      <value>segments_b</value>
+      <value>segments_a</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -3100,123 +3100,6 @@
     <param>
       <key>mode</key>
       <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_sync_adjust</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(784, 312)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_sync_adjust_0</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_sync_adjust</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(784, 368)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_sync_adjust_0_0</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_sync_adjust</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(784, 240)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_sync_adjust_1</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
     </param>
   </block>
   <block>
@@ -6573,32 +6456,14 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>dtv_dvbt_reed_solomon_enc_1</source_block_id>
-    <sink_block_id>isdbt_sync_adjust_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>dtv_dvbt_reed_solomon_enc_1_0</source_block_id>
     <sink_block_id>isdbt_energy_dispersal_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>dtv_dvbt_reed_solomon_enc_1_0</source_block_id>
-    <sink_block_id>isdbt_sync_adjust_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>dtv_dvbt_reed_solomon_enc_1_1</source_block_id>
     <sink_block_id>isdbt_energy_dispersal_0_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>dtv_dvbt_reed_solomon_enc_1_1</source_block_id>
-    <sink_block_id>isdbt_sync_adjust_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6742,38 +6607,20 @@
   </connection>
   <connection>
     <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0_0</sink_block_id>
+    <sink_block_id>isdbt_bit_deinterleaver_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0_0</sink_block_id>
     <source_key>1</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>isdbt_bit_deinterleaver_0_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
     <source_key>2</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_sync_adjust_0</source_block_id>
-    <sink_block_id>isdbt_energy_dispersal_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_sync_adjust_0_0</source_block_id>
-    <sink_block_id>isdbt_energy_dispersal_0_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_sync_adjust_1</source_block_id>
-    <sink_block_id>isdbt_energy_dispersal_0</sink_block_id>
-    <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
