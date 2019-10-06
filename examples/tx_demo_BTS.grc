@@ -977,11 +977,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(376, 684)</value>
+      <value>(624, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1009,7 +1009,7 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>total_carriers</value>
+      <value>data_carriers</value>
     </param>
   </block>
   <block>
@@ -2718,7 +2718,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 580)</value>
+      <value>(352, 692)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4121,7 +4121,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>fbw</key>
@@ -4828,7 +4828,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -5651,7 +5651,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -5862,7 +5862,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_skiphead_0</source_block_id>
-    <sink_block_id>isdbt_tmcc_encoder_0</sink_block_id>
+    <sink_block_id>isdbt_pilot_signals_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6030,7 +6030,7 @@
   </connection>
   <connection>
     <source_block_id>isdbt_frequency_interleaver_0</source_block_id>
-    <sink_block_id>isdbt_pilot_signals_0</sink_block_id>
+    <sink_block_id>blocks_skiphead_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6060,7 +6060,7 @@
   </connection>
   <connection>
     <source_block_id>isdbt_pilot_signals_0</source_block_id>
-    <sink_block_id>blocks_skiphead_0</sink_block_id>
+    <sink_block_id>isdbt_tmcc_encoder_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

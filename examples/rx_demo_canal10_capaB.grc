@@ -116,7 +116,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>490000000</value>
+      <value>593143000</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -772,7 +772,7 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>384*12</value>
+      <value>384*1</value>
     </param>
   </block>
   <block>
@@ -1231,11 +1231,11 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>4</value>
+      <value>64</value>
     </param>
     <param>
       <key>segments</key>
-      <value>1</value>
+      <value>12</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1784,7 +1784,7 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>4</value>
+      <value>64</value>
     </param>
     <param>
       <key>rate</key>
@@ -5524,13 +5524,13 @@
   </connection>
   <connection>
     <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>isdbt_bit_deinterleaver_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0</sink_block_id>
+    <sink_block_id>isdbt_bit_deinterleaver_0</sink_block_id>
     <source_key>1</source_key>
     <sink_key>0</sink_key>
   </connection>

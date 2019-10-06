@@ -378,7 +378,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1.0/8</value>
+      <value>1.0/16</value>
     </param>
   </block>
   <block>
@@ -432,7 +432,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>4</value>
+      <value>2</value>
     </param>
   </block>
   <block>
@@ -459,7 +459,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>4</value>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -657,7 +657,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>6</value>
+      <value>12</value>
     </param>
   </block>
   <block>
@@ -684,7 +684,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>6</value>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -848,7 +848,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/david/Desktop/Proyecto/PROCESADO2.ts</value>
+      <value>/home/david/Desktop/Proyecto/camaraoneseg.ts</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -880,7 +880,62 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>204*2304*2</value>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/david/Desktop/Proyecto/camaraonesegCAPAB.ts</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(24, 324)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -978,54 +1033,7 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>384*6</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_null_sink</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>bus_conns</key>
-      <value>[[0,],]</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1672, 1260)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_null_sink_0_0_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>2304</value>
+      <value>384*1</value>
     </param>
   </block>
   <block>
@@ -1048,7 +1056,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(376, 684)</value>
+      <value>(616, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1076,11 +1084,11 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>total_carriers</value>
+      <value>data_carriers</value>
     </param>
   </block>
   <block>
-    <key>blocks_vector_to_stream</key>
+    <key>blocks_stream_to_vector</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1099,7 +1107,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 372)</value>
+      <value>(352, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1107,7 +1115,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_vector_to_stream_0</value>
+      <value>blocks_stream_to_vector_0</value>
     </param>
     <param>
       <key>type</key>
@@ -1123,11 +1131,62 @@
     </param>
     <param>
       <key>num_items</key>
-      <value>252*6</value>
+      <value>188</value>
     </param>
     <param>
       <key>vlen</key>
-      <value>204</value>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_stream_to_vector</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 332)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_stream_to_vector_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>num_items</key>
+      <value>188</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1335,159 +1394,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_vector_to_stream</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1632, 364)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_vector_to_stream_0_1_2</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>1512*4</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_vector_to_stream</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(280, 188)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_vector_to_stream_1</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>252</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>204</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_vector_to_stream</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(272, 420)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_vector_to_stream_2</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>byte</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>252*6</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>204</value>
-    </param>
-  </block>
-  <block>
     <key>channels_channel_model</key>
     <param>
       <key>alias</key>
@@ -1613,7 +1519,7 @@
     </param>
     <param>
       <key>code_rate</key>
-      <value>C7_8</value>
+      <value>C2_3</value>
     </param>
     <param>
       <key>comment</key>
@@ -1621,7 +1527,7 @@
     </param>
     <param>
       <key>constellation</key>
-      <value>64qam</value>
+      <value>qpsk</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1672,7 +1578,7 @@
     </param>
     <param>
       <key>code_rate</key>
-      <value>C7_8</value>
+      <value>C3_4</value>
     </param>
     <param>
       <key>comment</key>
@@ -1705,65 +1611,6 @@
     <param>
       <key>id</key>
       <value>dtv_dvbt_inner_coder_0_0_1</value>
-    </param>
-    <param>
-      <key>ninput</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>noutput</key>
-      <value>1512*4</value>
-    </param>
-  </block>
-  <block>
-    <key>dtv_dvbt_inner_coder</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>code_rate</key>
-      <value>C7_8</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>constellation</key>
-      <value>64qam</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1432, 340)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>hierarchy</key>
-      <value>alpha2</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dtv_dvbt_inner_coder_0_0_2</value>
     </param>
     <param>
       <key>ninput</key>
@@ -1925,77 +1772,6 @@
     </param>
   </block>
   <block>
-    <key>dtv_dvbt_reed_solomon_enc</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>blocks</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>gfpoly</key>
-      <value>0x11d</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(576, 412)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>dtv_dvbt_reed_solomon_enc_1_1</value>
-    </param>
-    <param>
-      <key>k</key>
-      <value>239</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>n</key>
-      <value>255</value>
-    </param>
-    <param>
-      <key>s</key>
-      <value>51</value>
-    </param>
-    <param>
-      <key>m</key>
-      <value>8</value>
-    </param>
-    <param>
-      <key>p</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>t</key>
-      <value>8</value>
-    </param>
-  </block>
-  <block>
     <key>fft_vxx</key>
     <param>
       <key>alias</key>
@@ -2094,7 +1870,7 @@
     </param>
     <param>
       <key>segments</key>
-      <value>segments_a</value>
+      <value>segments_b</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -2180,7 +1956,7 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>nsegments</key>
@@ -2196,7 +1972,7 @@
     </param>
     <param>
       <key>rate</key>
-      <value>4</value>
+      <value>1</value>
     </param>
     <param>
       <key>mode</key>
@@ -2251,62 +2027,7 @@
     </param>
     <param>
       <key>rate</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_byte_interleaver</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1192, 340)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_byte_interleaver_0_2</value>
-    </param>
-    <param>
-      <key>constellation_size</key>
-      <value>64</value>
-    </param>
-    <param>
-      <key>nsegments</key>
-      <value>segments_c</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>4</value>
+      <value>2</value>
     </param>
     <param>
       <key>mode</key>
@@ -2345,7 +2066,7 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>segments</key>
@@ -2401,57 +2122,6 @@
     <param>
       <key>segments</key>
       <value>segments_b</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_carrier_modulation</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1776, 348)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_carrier_modulation_0_2</value>
-    </param>
-    <param>
-      <key>constellation_size</key>
-      <value>64</value>
-    </param>
-    <param>
-      <key>segments</key>
-      <value>segments_c</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -2537,7 +2207,7 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>nsegments</key>
@@ -2553,7 +2223,7 @@
     </param>
     <param>
       <key>rate</key>
-      <value>4</value>
+      <value>1</value>
     </param>
     <param>
       <key>mode</key>
@@ -2608,62 +2278,7 @@
     </param>
     <param>
       <key>rate</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_energy_dispersal</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(952, 364)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_energy_dispersal_0_2</value>
-    </param>
-    <param>
-      <key>constellation_size</key>
-      <value>64</value>
-    </param>
-    <param>
-      <key>nsegments</key>
-      <value>segments_c</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>4</value>
+      <value>2</value>
     </param>
     <param>
       <key>mode</key>
@@ -2820,89 +2435,6 @@
     </param>
   </block>
   <block>
-    <key>isdbt_hierarchical_divisor</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>conv_code_A</key>
-      <value>0.875</value>
-    </param>
-    <param>
-      <key>conv_code_B</key>
-      <value>0.875</value>
-    </param>
-    <param>
-      <key>conv_code_C</key>
-      <value>0.875</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(16, 324)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>cp</key>
-      <value>0.125</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_hierarchical_divisor_0</value>
-    </param>
-    <param>
-      <key>segments_A</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>segments_B</key>
-      <value>6</value>
-    </param>
-    <param>
-      <key>segments_C</key>
-      <value>6</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mod_scheme_A</key>
-      <value>6</value>
-    </param>
-    <param>
-      <key>mod_scheme_B</key>
-      <value>6</value>
-    </param>
-    <param>
-      <key>mod_scheme_C</key>
-      <value>6</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
     <key>isdbt_ofdm_synchronization</key>
     <param>
       <key>alias</key>
@@ -2930,7 +2462,7 @@
     </param>
     <param>
       <key>cp_length</key>
-      <value>0.125</value>
+      <value>0.0625</value>
     </param>
     <param>
       <key>id</key>
@@ -2973,7 +2505,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 580)</value>
+      <value>(360, 692)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3067,7 +2599,7 @@
     </param>
     <param>
       <key>constellation_size_A</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>segments_A</key>
@@ -3083,7 +2615,7 @@
     </param>
     <param>
       <key>constellation_size_C</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>segments_C</key>
@@ -3319,11 +2851,11 @@
     </param>
     <param>
       <key>mod_scheme_A</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>conv_code_A</key>
-      <value>4</value>
+      <value>1</value>
     </param>
     <param>
       <key>nsegs_A</key>
@@ -3339,7 +2871,7 @@
     </param>
     <param>
       <key>conv_code_B</key>
-      <value>4</value>
+      <value>2</value>
     </param>
     <param>
       <key>nsegs_B</key>
@@ -3351,11 +2883,11 @@
     </param>
     <param>
       <key>mod_scheme_C</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>conv_code_C</key>
-      <value>4</value>
+      <value>0</value>
     </param>
     <param>
       <key>nsegs_C</key>
@@ -3376,123 +2908,6 @@
     <param>
       <key>mode</key>
       <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_tsp_resize</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(448, 336)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_tsp_resize_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_tsp_resize</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(432, 264)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_tsp_resize_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_tsp_resize</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(448, 408)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_tsp_resize_2</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
     </param>
   </block>
   <block>
@@ -3539,7 +2954,7 @@
     </param>
     <param>
       <key>rate</key>
-      <value>4</value>
+      <value>2</value>
     </param>
   </block>
   <block>
@@ -6337,7 +5752,13 @@
   </block>
   <connection>
     <source_block_id>blocks_file_source_0</source_block_id>
-    <sink_block_id>isdbt_hierarchical_divisor_0</sink_block_id>
+    <sink_block_id>blocks_stream_to_vector_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_0_0</source_block_id>
+    <sink_block_id>blocks_stream_to_vector_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6361,13 +5782,19 @@
   </connection>
   <connection>
     <source_block_id>blocks_skiphead_0</source_block_id>
-    <sink_block_id>isdbt_tmcc_encoder_0</sink_block_id>
+    <sink_block_id>isdbt_pilot_signals_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_vector_to_stream_0</source_block_id>
-    <sink_block_id>isdbt_tsp_resize_0</sink_block_id>
+    <source_block_id>blocks_stream_to_vector_0</source_block_id>
+    <sink_block_id>dtv_dvbt_reed_solomon_enc_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_stream_to_vector_0_0</source_block_id>
+    <sink_block_id>dtv_dvbt_reed_solomon_enc_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6392,24 +5819,6 @@
   <connection>
     <source_block_id>blocks_vector_to_stream_0_1_1</source_block_id>
     <sink_block_id>isdbt_carrier_modulation_0_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_vector_to_stream_0_1_2</source_block_id>
-    <sink_block_id>isdbt_carrier_modulation_0_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_vector_to_stream_1</source_block_id>
-    <sink_block_id>isdbt_tsp_resize_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_vector_to_stream_2</source_block_id>
-    <sink_block_id>isdbt_tsp_resize_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6444,12 +5853,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>dtv_dvbt_inner_coder_0_0_2</source_block_id>
-    <sink_block_id>blocks_vector_to_stream_0_1_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>dtv_dvbt_reed_solomon_enc_1</source_block_id>
     <sink_block_id>isdbt_energy_dispersal_0_1</sink_block_id>
     <source_key>0</source_key>
@@ -6458,12 +5861,6 @@
   <connection>
     <source_block_id>dtv_dvbt_reed_solomon_enc_1_0</source_block_id>
     <sink_block_id>isdbt_energy_dispersal_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>dtv_dvbt_reed_solomon_enc_1_1</source_block_id>
-    <sink_block_id>isdbt_energy_dispersal_0_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6498,12 +5895,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>isdbt_byte_interleaver_0_2</source_block_id>
-    <sink_block_id>dtv_dvbt_inner_coder_0_0_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>isdbt_carrier_modulation_0</source_block_id>
     <sink_block_id>isdbt_hierarchical_combinator_0</sink_block_id>
     <source_key>0</source_key>
@@ -6514,12 +5905,6 @@
     <sink_block_id>isdbt_hierarchical_combinator_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_carrier_modulation_0_2</source_block_id>
-    <sink_block_id>isdbt_hierarchical_combinator_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>2</sink_key>
   </connection>
   <connection>
     <source_block_id>isdbt_energy_descrambler_0_0</source_block_id>
@@ -6540,12 +5925,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>isdbt_energy_dispersal_0_2</source_block_id>
-    <sink_block_id>isdbt_byte_interleaver_0_2</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>isdbt_frequency_deinterleaver_0</source_block_id>
     <sink_block_id>isdbt_time_deinterleaver_0</sink_block_id>
     <source_key>0</source_key>
@@ -6553,7 +5932,7 @@
   </connection>
   <connection>
     <source_block_id>isdbt_frequency_interleaver_0</source_block_id>
-    <sink_block_id>isdbt_pilot_signals_0</sink_block_id>
+    <sink_block_id>blocks_skiphead_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6561,24 +5940,6 @@
     <source_block_id>isdbt_hierarchical_combinator_0</source_block_id>
     <sink_block_id>isdbt_time_interleaver_0</sink_block_id>
     <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_hierarchical_divisor_0</source_block_id>
-    <sink_block_id>blocks_vector_to_stream_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_hierarchical_divisor_0</source_block_id>
-    <sink_block_id>blocks_vector_to_stream_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_hierarchical_divisor_0</source_block_id>
-    <sink_block_id>blocks_vector_to_stream_2</sink_block_id>
-    <source_key>2</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
@@ -6595,7 +5956,7 @@
   </connection>
   <connection>
     <source_block_id>isdbt_pilot_signals_0</source_block_id>
-    <sink_block_id>blocks_skiphead_0</sink_block_id>
+    <sink_block_id>isdbt_tmcc_encoder_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -6607,20 +5968,14 @@
   </connection>
   <connection>
     <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>isdbt_bit_deinterleaver_0_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0_0</sink_block_id>
+    <sink_block_id>isdbt_bit_deinterleaver_0_0</sink_block_id>
     <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_symbol_demapper_0</source_block_id>
-    <sink_block_id>blocks_null_sink_0_0_0</sink_block_id>
-    <source_key>2</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
@@ -6644,24 +5999,6 @@
   <connection>
     <source_block_id>isdbt_tmcc_encoder_0</source_block_id>
     <sink_block_id>fft_vxx_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_tsp_resize_0</source_block_id>
-    <sink_block_id>dtv_dvbt_reed_solomon_enc_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_tsp_resize_1</source_block_id>
-    <sink_block_id>dtv_dvbt_reed_solomon_enc_1_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_tsp_resize_2</source_block_id>
-    <sink_block_id>dtv_dvbt_reed_solomon_enc_1_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
