@@ -33,7 +33,7 @@ list(APPEND isdbt_sources
     symbol_demapper_impl.cc
     tmcc_decoder_impl.cc
     bit_deinterleaver_impl.cc
-    d_viterbi.c
+    #d_viterbi.c
     d_metrics.c
     d_tab.c
     energy_descrambler_impl.cc

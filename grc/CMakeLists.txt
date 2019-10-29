@@ -33,7 +33,6 @@ install(FILES
     isdbt_frequency_deinterleaver_1seg.xml
     isdbt_time_deinterleaver_1seg.xml
     isdbt_symbol_demapper_1seg.xml
-    isdbt_viterbi_decoder.xml
     isdbt_isdbt_rf_channel_decoding.xml
     isdbt_isdbt_channel_decoding.xml
     isdbt_ofdm_synchronization.xml
