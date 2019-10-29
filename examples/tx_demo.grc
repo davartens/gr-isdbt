@@ -171,7 +171,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>593.143e6</value>
+      <value>490e6</value>
     </param>
   </block>
   <block>
@@ -608,7 +608,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/david/Desktop/Proyecto/in.fifo</value>
+      <value>/home/david/Desktop/Proyecto/layer_a.ts</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -820,7 +820,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 340)</value>
+      <value>(88, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -871,7 +871,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 524)</value>
+      <value>(160, 524)</value>
     </param>
     <param>
       <key>_rotation</key>

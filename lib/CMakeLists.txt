@@ -45,7 +45,6 @@ list(APPEND isdbt_sources
     frequency_deinterleaver_1seg_impl.cc
     time_deinterleaver_1seg_impl.cc
     symbol_demapper_1seg_impl.cc
-    viterbi_decoder_impl.cc
     ofdm_synchronization_impl.cc
     ofdm_synchronization_1seg_impl.cc
     tmcc_decoder_1seg_impl.cc

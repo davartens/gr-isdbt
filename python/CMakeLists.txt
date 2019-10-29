@@ -56,7 +56,6 @@ GR_ADD_TEST(qa_reed_solomon_dec_isdbt ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURC
 GR_ADD_TEST(qa_frequency_deinterleaver_1seg ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_frequency_deinterleaver_1seg.py)
 GR_ADD_TEST(qa_time_deinterleaver_1seg ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_time_deinterleaver_1seg.py)
 GR_ADD_TEST(qa_symbol_demapper_1seg ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_symbol_demapper_1seg.py)
-GR_ADD_TEST(qa_viterbi_decoder ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_viterbi_decoder.py)
 GR_ADD_TEST(qa_isdbt_rf_channel_decoding ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_isdbt_rf_channel_decoding.py)
 GR_ADD_TEST(qa_isdbt_channel_decoding ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_isdbt_channel_decoding.py)
 GR_ADD_TEST(qa_ofdm_synchronization ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ofdm_synchronization.py)

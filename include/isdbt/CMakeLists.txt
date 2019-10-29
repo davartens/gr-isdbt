@@ -39,7 +39,6 @@ install(FILES
     frequency_deinterleaver_1seg.h
     time_deinterleaver_1seg.h
     symbol_demapper_1seg.h
-    viterbi_decoder.h
     ofdm_synchronization.h
     ofdm_synchronization_1seg.h
     tmcc_decoder_1seg.h

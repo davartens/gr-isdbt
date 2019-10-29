@@ -24,7 +24,6 @@
 #include "isdbt/frequency_deinterleaver_1seg.h"
 #include "isdbt/time_deinterleaver_1seg.h"
 #include "isdbt/symbol_demapper_1seg.h"
-#include "isdbt/viterbi_decoder.h"
 #include "isdbt/ofdm_synchronization.h"
 #include "isdbt/ofdm_synchronization_1seg.h"
 #include "isdbt/tmcc_decoder_1seg.h"
@@ -78,9 +77,6 @@ GR_SWIG_BLOCK_MAGIC2(isdbt, time_deinterleaver_1seg);
 %include "isdbt/symbol_demapper_1seg.h"
 GR_SWIG_BLOCK_MAGIC2(isdbt, symbol_demapper_1seg);
 
-
-%include "isdbt/viterbi_decoder.h"
-GR_SWIG_BLOCK_MAGIC2(isdbt, viterbi_decoder);
 %include "isdbt/ofdm_synchronization.h"
 GR_SWIG_BLOCK_MAGIC2(isdbt, ofdm_synchronization);
 %include "isdbt/ofdm_synchronization_1seg.h"
