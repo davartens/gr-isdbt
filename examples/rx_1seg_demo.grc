@@ -237,7 +237,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 83)</value>
+      <value>(192, 84)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -778,7 +778,7 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>segments</key>
@@ -946,7 +946,7 @@
     </param>
     <param>
       <key>cp_length</key>
-      <value>0.125</value>
+      <value>0.0625</value>
     </param>
     <param>
       <key>id</key>
@@ -1016,7 +1016,7 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1185,11 +1185,11 @@
     </param>
     <param>
       <key>constellation_size</key>
-      <value>64</value>
+      <value>4</value>
     </param>
     <param>
       <key>rate</key>
-      <value>4</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -3762,7 +3762,7 @@
     </param>
     <param>
       <key>samp_rate</key>
-      <value>64e6/8</value>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>hide_cmd_port</key>
