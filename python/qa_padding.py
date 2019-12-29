@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #  
-# Copyright 2015
+# Copyright 2015, 2016, 2017, 2018
 #   Federico "Larroca" La Rocca <flarroca@fing.edu.uy>
 #   Pablo Belzarena 
 #   Gabriel Gomez Sena 
@@ -32,7 +32,7 @@ from gnuradio import gr, gr_unittest
 from gnuradio import blocks
 import isdbt_swig as isdbt
 
-class qa_ofdm_synchronization_1seg (gr_unittest.TestCase):
+class qa_padding (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -47,4 +47,4 @@ class qa_ofdm_synchronization_1seg (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_ofdm_synchronization_1seg, "qa_ofdm_synchronization_1seg.xml")
+    gr_unittest.run(qa_padding, "qa_padding.xml")

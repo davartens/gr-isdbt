@@ -58,7 +58,10 @@ list(APPEND isdbt_sources
     energy_dispersal_impl.cc
     tmcc_encoder_impl.cc
     hierarchical_divisor_impl.cc
-    tsp_resize_impl.cc )
+    tsp_resize_impl.cc
+    padding_impl.cc
+    #time_interleaver_1seg_impl.cc
+    timeinterleaver_1seg_impl.cc )
 
 set(isdbt_sources "${isdbt_sources}" PARENT_SCOPE)
 if(NOT isdbt_sources)
@@ -121,6 +124,7 @@ include_directories(${CPPUNIT_INCLUDE_DIRS})
 list(APPEND test_isdbt_sources
     ${CMAKE_CURRENT_SOURCE_DIR}/test_isdbt.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_isdbt.cc
+    #    ${CMAKE_CURRENT_SOURCE_DIR}/qa_padding.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_tmcc_encoder.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_energy_dispersal.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/qa_byte_interleaver.cc

@@ -52,5 +52,8 @@ install(FILES
     energy_dispersal.h
     tmcc_encoder.h
     hierarchical_divisor.h
-    tsp_resize.h DESTINATION include/isdbt
+    tsp_resize.h
+    padding.h
+    #time_interleaver_1seg.h
+    timeinterleaver_1seg.h DESTINATION include/isdbt
 )
