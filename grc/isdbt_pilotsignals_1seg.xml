@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>timeinterleaver_1seg</name>
-  <key>isdbt_timeinterleaver_1seg</key>
+  <name>pilotsignals_1seg</name>
+  <key>isdbt_pilotsignals_1seg</key>
   <category>[isdbt]</category>
   <import>import isdbt</import>
-  <make>isdbt.timeinterleaver_1seg()</make>
+  <make>isdbt.pilotsignals_1seg($mode)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
@@ -28,32 +28,14 @@
 	    <key>3</key>
 	  </option>
   </param>
-
-  <param>
-    <name>Layer A Segments</name>
-    <key>segments_A</key>
-    <type>int</type>
-  </param>
-  <param>
-    <name>Layer A Length</name>
-    <key>length_A</key>
-    <type>int</type>
-  </param>
-  
-
-  <!-- Make one 'sink' node per input. Sub-nodes:
-       * name (an identifier for the GUI)
-       * type
-       * vlen
-       * optional (set to 1 for optional inputs) -->
   <sink>
     <name>in</name>
     <type>complex</type>
-    <vlen>96*(2**($mode-1))</vlen>
+    <vlen>96*2**($mode-1)</vlen>
   </sink>
   <source>
     <name>out</name>
     <type>complex</type>
-    <vlen>96*(2**($mode-1))</vlen>
+    <vlen>512</vlen>
   </source>
 </block>

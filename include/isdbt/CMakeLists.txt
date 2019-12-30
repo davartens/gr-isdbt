@@ -55,5 +55,8 @@ install(FILES
     tsp_resize.h
     padding.h
     #time_interleaver_1seg.h
-    timeinterleaver_1seg.h DESTINATION include/isdbt
+    timeinterleaver_1seg.h
+    frequencyinterleaver_1seg.h
+    pilotsignals_1seg.h
+    tmccencoder_1seg.h DESTINATION include/isdbt
 )

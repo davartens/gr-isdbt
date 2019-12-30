@@ -31,6 +31,7 @@
 #define INCLUDED_ISDBT_TIMEINTERLEAVER_1SEG_IMPL_H
 
 #include <isdbt/timeinterleaver_1seg.h>
+#include <boost/circular_buffer.hpp>
 
 namespace gr {
   namespace isdbt {

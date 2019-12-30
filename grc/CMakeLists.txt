@@ -51,5 +51,10 @@ install(FILES
     isdbt_tsp_resize.xml
     isdbt_padding.xml
     #isdbt_time_interleaver_1seg.xml
-    isdbt_timeinterleaver_1seg.xml DESTINATION share/gnuradio/grc/blocks
+    #isdbt_timeinterleaver_1seg.xml
+    isdbt_timeinterleaver_1seg.xml
+    isdbt_timeinterleaver_1seg.xml
+    isdbt_frequencyinterleaver_1seg.xml
+    isdbt_pilotsignals_1seg.xml
+    isdbt_tmccencoder_1seg.xml DESTINATION share/gnuradio/grc/blocks
 )

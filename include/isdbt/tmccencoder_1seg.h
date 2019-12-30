@@ -28,8 +28,8 @@
  */
 
 
-#ifndef INCLUDED_ISDBT_TIMEINTERLEAVER_1SEG_H
-#define INCLUDED_ISDBT_TIMEINTERLEAVER_1SEG_H
+#ifndef INCLUDED_ISDBT_TMCCENCODER_1SEG_H
+#define INCLUDED_ISDBT_TMCCENCODER_1SEG_H
 
 #include <isdbt/api.h>
 #include <gnuradio/sync_block.h>
@@ -42,24 +42,24 @@ namespace gr {
      * \ingroup isdbt
      *
      */
-    class ISDBT_API timeinterleaver_1seg : virtual public gr::sync_block
+    class ISDBT_API tmccencoder_1seg : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<timeinterleaver_1seg> sptr;
+      typedef boost::shared_ptr<tmccencoder_1seg> sptr;
 
       /*!
-       * \brief Return a shared_ptr to a new instance of isdbt::timeinterleaver_1seg.
+       * \brief Return a shared_ptr to a new instance of isdbt::tmccencoder_1seg.
        *
-       * To avoid accidental use of raw pointers, isdbt::timeinterleaver_1seg's
+       * To avoid accidental use of raw pointers, isdbt::tmccencoder_1seg's
        * constructor is in a private implementation
-       * class. isdbt::timeinterleaver_1seg::make is the public interface for
+       * class. isdbt::tmccencoder_1seg::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int mode, int segments_A, int length_A);
+      static sptr make(int mode, int mod_scheme_A, int conv_code_A,  int int_length_A);
     };
 
   } // namespace isdbt
 } // namespace gr
 
-#endif /* INCLUDED_ISDBT_TIMEINTERLEAVER_1SEG_H */
+#endif /* INCLUDED_ISDBT_TMCCENCODER_1SEG_H */
 

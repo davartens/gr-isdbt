@@ -38,12 +38,6 @@
     </param>
 
     <param>
-        <name>Layer A Segments</name>
-        <key>nsegs_A</key>
-        <type>int</type>
-    </param>
-
-    <param>
         <name>Layer A Modulation Scheme</name>
         <key>mod_scheme_A</key>
         <value>4</value>
