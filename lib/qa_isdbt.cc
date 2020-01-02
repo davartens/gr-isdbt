@@ -49,6 +49,10 @@
 #include "qa_byte_interleaver.h"
 #include "qa_energy_dispersal.h"
 #include "qa_tmcc_encoder.h"
+#include "qa_timeinterleaver_1seg.h"
+#include "qa_frequencyinterleaver_1seg.h"
+#include "qa_pilotsignals_1seg.h"
+#include "qa_tmccencoder_1seg.h"
 
 CppUnit::TestSuite *
 qa_isdbt::suite()
@@ -77,6 +81,10 @@ qa_isdbt::suite()
   s->addTest(gr::isdbt::qa_byte_interleaver::suite());
   s->addTest(gr::isdbt::qa_energy_dispersal::suite());
   s->addTest(gr::isdbt::qa_tmcc_encoder::suite());
+  s->addTest(gr::isdbt::qa_timeinterleaver_1seg::suite());
+  s->addTest(gr::isdbt::qa_frequencyinterleaver_1seg::suite());
+  s->addTest(gr::isdbt::qa_pilotsignals_1seg::suite());
+  s->addTest(gr::isdbt::qa_tmccencoder_1seg::suite());
 
   return s;
 }

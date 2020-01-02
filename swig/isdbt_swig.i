@@ -38,6 +38,11 @@
 #include "isdbt/tmcc_encoder.h"
 #include "isdbt/hierarchical_divisor.h"
 #include "isdbt/tsp_resize.h"
+#include "isdbt/padding.h"
+#include "isdbt/timeinterleaver_1seg.h"
+#include "isdbt/frequencyinterleaver_1seg.h"
+#include "isdbt/pilotsignals_1seg.h"
+#include "isdbt/tmccencoder_1seg.h"
 %}
 
 
@@ -107,3 +112,15 @@ GR_SWIG_BLOCK_MAGIC2(isdbt, tmcc_encoder);
 GR_SWIG_BLOCK_MAGIC2(isdbt, hierarchical_divisor);
 %include "isdbt/tsp_resize.h"
 GR_SWIG_BLOCK_MAGIC2(isdbt, tsp_resize);
+%include "isdbt/padding.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, padding);
+
+%include "isdbt/timeinterleaver_1seg.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, timeinterleaver_1seg);
+%include "isdbt/frequencyinterleaver_1seg.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, frequencyinterleaver_1seg);
+
+%include "isdbt/pilotsignals_1seg.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, pilotsignals_1seg);
+%include "isdbt/tmccencoder_1seg.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, tmccencoder_1seg);
