@@ -227,16 +227,20 @@
   <source>
     <name>out0</name>
     <type>byte</type>
-    <vlen>204*$segments_A*$mod_scheme_A*$conv_code_A*96*pow(2, $mode - 1)/8</vlen>
+    <vlen>round(204*$segments_A*$mod_scheme_A*$conv_code_A*96*pow(2, $mode - 1)/8)</vlen>
   </source>
+
+ <!-- Optional outputs -->
     <source>
     <name>out1</name>
     <type>byte</type>
-    <vlen>204*$segments_B*$mod_scheme_B*$conv_code_B*96*pow(2, $mode - 1)/8</vlen>
-  </source>
+    <vlen>round(204*$segments_B*$mod_scheme_B*$conv_code_B*96*pow(2, $mode - 1)/8)</vlen>
+ 	<optional>1</optional>
+ </source>
     <source>
     <name>out2</name>
     <type>byte</type>
-    <vlen>204*$segments_C*$mod_scheme_C*$conv_code_C*96*pow(2, $mode - 1)/8</vlen>
-  </source>
+    <vlen>round(204*$segments_C*$mod_scheme_C*$conv_code_C*96*pow(2, $mode - 1)/8)</vlen>
+	<optional>1</optional>  
+</source>
 </block>

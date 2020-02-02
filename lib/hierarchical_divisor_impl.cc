@@ -62,7 +62,7 @@ namespace gr {
 
 
       layer_a_tsp = (int)round((d_segments_A*tsp_len*mod_scheme_A*conv_code_A*96*pow(2, d_mode - 1))/(8*tsp_len));
-      layer_b_tsp = (int)round((d_segments_B*tsp_len*mod_scheme_B*conv_code_B*96*pow(2, d_mode - 1))/(8*tsp_len));
+      layer_b_tsp = (int)round((d_segments_B*tsp_len*mod_scheme_B*conv_code_B*96*pow(2, d_mode - 1))/(8*tsp_len));//
       layer_c_tsp = (int)round((d_segments_C*tsp_len*mod_scheme_C*conv_code_C*96*pow(2, d_mode - 1))/(8*tsp_len));
 
 
@@ -112,47 +112,45 @@ namespace gr {
       int tsp_b = 0;
       int tsp_c = 0;
       int def = 0;
-
+	
+      bool out_B_connected = output_items.size()>=2;
+      bool out_C_connected = output_items.size()>=3;	
+        
       for (int output = 0; output < noutput_items; output++)
       {
         //printf("NUEVO OUTPUT ITEM\n");
 
-        for (int k=0; k<d_tsp_per_frame ; k++)
+	for (int k=0; k<d_tsp_per_frame ; k++)
         {
           //Read first TSP from input
           tsp_info_byte = in[output*d_tsp_per_frame*tsp_len + k*tsp_len + 188 + 1];
           layer_flag = tsp_info_byte >>= 4;
           
-          switch (layer_flag)
-          {
-            case 1:
-            {
-              //Copy TSP to output A
-              memcpy(out0+ output*layer_a_tsp*tsp_len + tsp_len*tsp_a, in + k*tsp_len + output*d_tsp_per_frame*tsp_len, tsp_len);
-              tsp_a++;
-              break;
-            }
-            case 2:
-            {
+
+          if (layer_flag == 1){
+            //Copy TSP to output A
+            memcpy(out0+ output*layer_a_tsp*tsp_len + tsp_len*tsp_a, in + k*tsp_len + output*d_tsp_per_frame*tsp_len, tsp_len);
+            tsp_a++;
+           }
+           
+           if ((out_B_connected) && (layer_flag==2)){
               //Copy TSP to output B
               memcpy(out1+ output*layer_b_tsp*tsp_len + tsp_len*tsp_b, in + k*tsp_len + output*d_tsp_per_frame*tsp_len, tsp_len);
               tsp_b++;
-              break;
             }
-            case 3:
-            {
+           
+            if ((out_C_connected)&&(layer_flag==3)){
               //Copy TSP to output C
               memcpy(out2+ output*layer_c_tsp*tsp_len + tsp_len*tsp_c, in + k*tsp_len + output*d_tsp_per_frame*tsp_len, tsp_len);
               tsp_c++;
-              break;
             }
-            default:
-            {
+	    if (layer_flag==0){
               //printf("Layer X, total: %i \n", def);
               def++;
-              break;
-            }
-          }
+             }
+          
+	
+
           //Goto test new TSP
         }
         tsp_a = 0;
