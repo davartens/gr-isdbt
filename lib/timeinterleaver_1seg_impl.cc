@@ -52,15 +52,17 @@ namespace gr {
      */
     timeinterleaver_1seg_impl::timeinterleaver_1seg_impl(int mode, int segments_A, int length_A)
       : gr::sync_block("timeinterleaver_1seg",
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
+     /*         gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
+              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))))*/
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
     {
             d_mode = mode; 
             d_I_A = length_A; 
 
 
             d_carriers_per_segment = d_data_carriers_mode1*((int)pow(2.0,mode-1)); 
-            d_noutput = d_carriers_per_segment; 
+            d_noutput = d_carriers_per_segment*d_total_segments; 
             int mi = 0;
 
             int sync_delay = 0;
@@ -101,13 +103,20 @@ namespace gr {
       // Do <+signal processing+>
       for (int i=0; i<noutput_items; i++)
                 {
-                    for (int carrier=0; carrier<d_noutput; carrier++)
+                    for (int carrier=0; carrier<d_carriers_per_segment; carrier++)
                     {
                         // a simple FIFO queue performs the interleaving. 
                         // The "difficult" part is setting the correct sizes 
                         // for each queue. 
                         d_shift[carrier]->push_back(in[i*d_noutput + carrier]);
                         out[i*d_noutput + carrier] = d_shift[carrier]->front();
+                        //d_shift[carrier]->pop_front(); 
+                    }
+                    for (int carrier=d_carriers_per_segment; carrier<d_noutput; carrier++)
+                    {
+                        // a test: delete this part after working
+          
+                        out[i*d_noutput + carrier] = 0;
                         //d_shift[carrier]->pop_front(); 
                     }
                 }
