@@ -74,15 +74,8 @@ namespace gr {
                 4345, 4445, 4622, 4688, 4799, 4909, 4999, 5159,\
                 5245, 5377, 5501, 5531*/
                 
-                //133, 257, 287, 442
+                133, 257, 287, 442
                 //93, 217, 247, 402
-
-                //2592 - 3024
-                //2693, 2723, 2878, 2941
-                // - 2592
-                101, 131, 286, 349
-
-
         };//3880 -4312 ---------------- 3973, 4097, 4127, 4282,\
 
         // Auxiliary Channel (AC) position for each transmission mode
@@ -127,13 +120,8 @@ namespace gr {
                 4826, 4852, 4895, 4939, 5044, 5065, 5080, 5165,\
                 5224, 5273, 5300, 5356, 5407, 5489, 5606, 5609  */
                 
-                //56, 112, 163, 245, 362, 365, 382, 400
+                56, 112, 163, 245, 362, 365, 382, 400
                 
-                //2592 - 3024
-                //2599, 2681, 2798, 2801, 2818, 2836, 2969, 2999
-                // - 2592
-                7, 89, 206, 209, 226, 244, 377, 407
-
                 }; 
                 
                     //3880 -4312 --------------------- 3896, 3952, 4003, 4085, 4202, 4205, 4222, 4240,
@@ -152,13 +140,11 @@ namespace gr {
     pilotsignals_1seg_impl::pilotsignals_1seg_impl(int mode)
       : gr::sync_block("pilotsignals_1seg",
                     gr::io_signature::make(1, 1, sizeof(gr_complex)*(d_data_carriers_per_segment_2k*((int)pow(2.0,mode-1)))),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*8192)) //after all this works, change this line for every mode
-
-                    //gr::io_signature::make(1, 1, sizeof(gr_complex)*512)) //after all this works, change this line for every mode
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*512)) //after all this works, change this line for every mode
     {
 
             d_fft_length = 512; 
-            d_active_carriers = (1+d_carriers_per_segment_2k*pow(2.0,mode-1)); 
+            d_active_carriers = (d_carriers_per_segment_2k*pow(2.0,mode-1)); 
             d_data_carriers_size = d_data_carriers_per_segment_2k*pow(2.0,mode-1); 
             
        
@@ -175,7 +161,7 @@ namespace gr {
             generate_prbs();
            
             //  assign the TMCC carrier positions based on the mode
-            // tmcc_and_ac_positions(d_fft_length); 
+            tmcc_and_ac_positions(d_fft_length); 
 
             d_carriers_per_segment = d_active_carriers;
             d_data_carriers_per_segment = d_data_carriers_size;
@@ -222,7 +208,7 @@ namespace gr {
                 /*
                  * Assign to variables ac_carriers, ac_carriers_size, tmcc_carriers and tmcc_carriers_size
                  * the corresponding values according to the transmission mode
-                 **/
+                 */
                 switch (fft)
                 {
                     case 2048:
@@ -241,7 +227,7 @@ namespace gr {
                             d_ac_carriers_size = ac_carriers_size_4k;
                         }
                         break;
-                    case 512:
+                    case 8192:
                         {
                             d_tmcc_carriers = tmcc_carriers_8k;
                             d_tmcc_carriers_size = tmcc_carriers_size_8k;
@@ -253,8 +239,6 @@ namespace gr {
                         break;
                 }
             }
-            
-        
 
         void
             pilotsignals_1seg_impl::data_carriers_position()
@@ -336,8 +320,7 @@ namespace gr {
 
                     
                     // fill with the last zeros
-                    //for (carrier = d_zeros_on_left+d_active_carriers ; carrier < d_fft_length; carrier++) {
-                    for (carrier = d_zeros_on_left+d_active_carriers ; carrier < 8192; carrier++) {
+                    for (carrier = d_zeros_on_left+d_active_carriers ; carrier < d_fft_length; carrier++) {
                         out[i*d_fft_length+carrier] = 0;
                     }
                    
@@ -346,6 +329,9 @@ namespace gr {
                         out[i*d_fft_length+d_zeros_on_left+current_sp_carrier] = d_pilot_values[current_sp_carrier]; 
                     }
                     
+                    // I now set the continual pilot
+                    out[i*d_fft_length+d_zeros_on_left+d_active_carriers-1] = d_pilot_values[d_active_carriers-1]; 
+
                     // I now assign the tmcc carriers with the PRBS
                     for (int current_tmcc_carrier = 0; current_tmcc_carrier < d_tmcc_carriers_size; current_tmcc_carrier++) {
                         out[i*d_fft_length+d_zeros_on_left+d_tmcc_carriers[current_tmcc_carrier]] = d_pilot_values[d_tmcc_carriers[current_tmcc_carrier]]; 

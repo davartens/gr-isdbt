@@ -31,11 +31,11 @@
   <sink>
     <name>in</name>
     <type>complex</type>
-    <vlen>96*2**($mode-1)</vlen>
+    <vlen>13*96*2**($mode-1)</vlen>
   </sink>
   <source>
     <name>out</name>
     <type>complex</type>
-    <vlen>512</vlen>
+    <vlen>8192</vlen>
   </source>
 </block>
