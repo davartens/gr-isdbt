@@ -54,15 +54,15 @@ namespace gr {
       : gr::sync_block("timeinterleaver_1seg",
      /*         gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
               gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))))*/
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
     {
             d_mode = mode; 
             d_I_A = length_A; 
 
 
             d_carriers_per_segment = d_data_carriers_mode1*((int)pow(2.0,mode-1)); 
-            d_noutput = d_carriers_per_segment*d_total_segments; 
+            d_noutput = d_carriers_per_segment; 
             int mi = 0;
 
             int sync_delay = 0;
@@ -112,13 +112,13 @@ namespace gr {
                         out[i*d_noutput + carrier] = d_shift[carrier]->front();
                         //d_shift[carrier]->pop_front(); 
                     }
-                    for (int carrier=d_carriers_per_segment; carrier<d_noutput; carrier++)
+                    /*for (int carrier=d_carriers_per_segment; carrier<d_noutput; carrier++)
                     {
                         // a test: delete this part after working
           
                         out[i*d_noutput + carrier] = 0;
                         //d_shift[carrier]->pop_front(); 
-                    }
+                    }*/
                 }
 
       // Tell runtime system how many output items we produced.

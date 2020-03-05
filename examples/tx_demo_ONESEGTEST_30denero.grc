@@ -663,7 +663,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/lingles/fing/proyecto/one_seg_example/out1marzo.ts</value>
+      <value>/home/lingles/fing/proyecto/one_seg_example/out3marzo.ts</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1944,6 +1944,49 @@
     </param>
   </block>
   <block>
+    <key>isdbt_pilot_signals</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(400, 708)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>isdbt_pilot_signals_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mode</key>
+      <value>3</value>
+    </param>
+  </block>
+  <block>
     <key>isdbt_pilotsignals_1seg</key>
     <param>
       <key>alias</key>
@@ -1959,11 +2002,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 676)</value>
+      <value>(344, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4122,6 +4165,12 @@
   </connection>
   <connection>
     <source_block_id>blocks_skiphead_0</source_block_id>
+    <sink_block_id>isdbt_pilot_signals_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_skiphead_0</source_block_id>
     <sink_block_id>isdbt_pilotsignals_1seg_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -4237,6 +4286,12 @@
   <connection>
     <source_block_id>isdbt_padding_0</source_block_id>
     <sink_block_id>fft_vxx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>isdbt_pilot_signals_0</source_block_id>
+    <sink_block_id>isdbt_tmcc_encoder_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

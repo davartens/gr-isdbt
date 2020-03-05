@@ -91,13 +91,13 @@ namespace gr {
      */
     frequencyinterleaver_1seg_impl::frequencyinterleaver_1seg_impl(int mode)
       : gr::sync_block("frequencyinterleaver_1seg",
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
+              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
+              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
     {
             d_mode = mode; 
             d_1seg = true; 
             d_carriers_per_segment = d_data_carriers_mode1*((int)pow(2.0,mode-1)); 
-            d_total_carriers = d_total_segments*d_carriers_per_segment; 
+            d_total_carriers = d_carriers_per_segment; 
 
             /*Initialize the rotated vector*/
             d_rotated = new gr_complex [d_total_carriers]; 
@@ -164,13 +164,13 @@ namespace gr {
 
 
                     }
-                    for (int carrier=d_carriers_per_segment; carrier<d_total_carriers; carrier++)
+                    /*for (int carrier=d_carriers_per_segment; carrier<d_total_carriers; carrier++)
                     {
                         // a test: delete this part after working
           
                         out[i*d_total_carriers + carrier] = 0;
                         //d_shift[carrier]->pop_front(); 
-                    }
+                    }*/
                 }
 
       // Do <+signal processing+>

@@ -816,7 +816,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 604)</value>
+      <value>(816, 580)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1198,6 +1198,45 @@
     </param>
   </block>
   <block>
+    <key>isdbt_blocktesting</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(432, 592)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>isdbt_blocktesting_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>isdbt_byte_interleaver</key>
     <param>
       <key>alias</key>
@@ -1378,7 +1417,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 588)</value>
+      <value>(968, 588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1402,6 +1441,45 @@
     </param>
   </block>
   <block>
+    <key>isdbt_padding</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(96, 800)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>270</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>isdbt_padding_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
     <key>isdbt_pilotsignals_1seg</key>
     <param>
       <key>alias</key>
@@ -1421,7 +1499,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(400, 612)</value>
+      <value>(568, 588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1496,7 +1574,7 @@
     </param>
   </block>
   <block>
-    <key>isdbt_timeinterleaver_1seg</key>
+    <key>isdbt_tmcc_encoder</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -1515,7 +1593,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1128, 572)</value>
+      <value>(136, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1523,58 +1601,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>isdbt_timeinterleaver_1seg_0</value>
-    </param>
-    <param>
-      <key>length_A</key>
-      <value>4</value>
-    </param>
-    <param>
-      <key>segments_A</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_tmccencoder_1seg</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(128, 612)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>180</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_tmccencoder_1seg_0</value>
+      <value>isdbt_tmcc_encoder_0</value>
     </param>
     <param>
       <key>int_length_A</key>
@@ -1589,12 +1616,52 @@
       <value>1</value>
     </param>
     <param>
+      <key>nsegs_A</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>int_length_B</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>mod_scheme_B</key>
+      <value>16</value>
+    </param>
+    <param>
+      <key>conv_code_B</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>nsegs_B</key>
+      <value>12</value>
+    </param>
+    <param>
+      <key>int_length_C</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>mod_scheme_C</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>conv_code_C</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>nsegs_C</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>maxoutbuf</key>
       <value>0</value>
     </param>
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>one_seg_present</key>
+      <value>True</value>
     </param>
     <param>
       <key>mode</key>
@@ -3575,6 +3642,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>isdbt_blocktesting_0</source_block_id>
+    <sink_block_id>isdbt_tmcc_encoder_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>isdbt_byte_interleaver_0</source_block_id>
     <sink_block_id>dtv_dvbt_inner_coder_0_0</sink_block_id>
     <source_key>0</source_key>
@@ -3582,7 +3655,7 @@
   </connection>
   <connection>
     <source_block_id>isdbt_carrier_modulation_0</source_block_id>
-    <sink_block_id>isdbt_timeinterleaver_1seg_0</sink_block_id>
+    <sink_block_id>isdbt_frequencyinterleaver_1seg_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3599,8 +3672,14 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>isdbt_padding_0</source_block_id>
+    <sink_block_id>fft_vxx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>isdbt_pilotsignals_1seg_0</source_block_id>
-    <sink_block_id>isdbt_tmccencoder_1seg_0</sink_block_id>
+    <sink_block_id>isdbt_blocktesting_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -3617,14 +3696,8 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>isdbt_timeinterleaver_1seg_0</source_block_id>
-    <sink_block_id>isdbt_frequencyinterleaver_1seg_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_tmccencoder_1seg_0</source_block_id>
-    <sink_block_id>fft_vxx_1</sink_block_id>
+    <source_block_id>isdbt_tmcc_encoder_0</source_block_id>
+    <sink_block_id>isdbt_padding_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

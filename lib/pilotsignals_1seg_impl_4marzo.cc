@@ -129,8 +129,8 @@ namespace gr {
          */
         pilotsignals_1seg_impl::pilotsignals_1seg_impl(int mode)
             : gr::sync_block("pilot_signals",
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*384),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*512))
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*(d_total_segments*d_data_carriers_per_segment_2k*((int)pow(2.0,mode-1)))),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*8192))
         {
 
             d_fft_length = pow(2.0,10+mode); 
@@ -297,7 +297,7 @@ namespace gr {
 
                    // fill with the first zeros
                     for (carrier = 0; carrier < 40; carrier++) { //PASO 2 poner solo 40 ceros
-                        out[i*512+carrier] = 0;
+                        out[i*d_fft_length+carrier] = 0;
                     }
                    
                     // copy the input at the right carriers
@@ -305,7 +305,7 @@ namespace gr {
                         //out[i*d_fft_length+carrier] = in[i*d_active_carriers+carrier-d_zeros_on_left];
                         
                         if ((d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] < 1288 + 2592 + 432) && (d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] >= 1288 + 2592))
-                                out[i*512 + 40 - 1288 - 2592 + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*384 + carrier]; 
+                                out[i*512  - 1288 - 2592 + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*384 + carrier]; 
                     }                   //PASO 2 : restar 1288 + 2592 a out
                     
                     // fill with the last zeros
@@ -315,10 +315,8 @@ namespace gr {
                    
                    // I now set the scattered pilots 
                     for (int current_sp_carrier = 3*d_current_symbol; current_sp_carrier < d_active_carriers-1; current_sp_carrier+=12) {
-                        if ((current_sp_carrier >=   2592) && (current_sp_carrier <   2592 + 432))
-                            out[i*512 + 40 + current_sp_carrier] = d_pilot_values[current_sp_carrier]; 
+                        out[i*d_fft_length+d_zeros_on_left+current_sp_carrier] = d_pilot_values[current_sp_carrier]; 
                     }
-                    //i*d_fft_length+d_zeros_on_left+current_sp_carrier
 
                     // I now assign the tmcc carriers with the PRBS
                     for (int current_tmcc_carrier = 24; current_tmcc_carrier < 24+8; current_tmcc_carrier++) {
@@ -327,7 +325,7 @@ namespace gr {
 
                     // I now assign the ac carriers with the PRBS
                     for (int current_ac_carrier = 48; current_ac_carrier < 48 + 8; current_ac_carrier++) {
-                        out[i*512+ 40 +d_ac_carriers[current_ac_carrier]] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
+                        out[i*512 + 40 +d_ac_carriers[current_ac_carrier]] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
                     } //PASO 2: restar 2592 para tener solo el segmento 1
 
 
