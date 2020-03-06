@@ -32,39 +32,38 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include "blocktesting_impl.h"
+#include "pilotstesting_impl.h"
 
 namespace gr {
   namespace isdbt {
 
-    blocktesting::sptr
-    blocktesting::make()
+    pilotstesting::sptr
+    pilotstesting::make()
     {
       return gnuradio::get_initial_sptr
-        (new blocktesting_impl());
+        (new pilotstesting_impl());
     }
 
     /*
      * The private constructor
      */
-    blocktesting_impl::blocktesting_impl()
-      : gr::sync_block("blocktesting",
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*512),
+    pilotstesting_impl::pilotstesting_impl()
+      : gr::sync_block("pilotstesting",
+              gr::io_signature::make(1, 1, sizeof(gr_complex)*432*2),
               gr::io_signature::make(1, 1, sizeof(gr_complex)*8192))
     {}
 
     /*
      * Our virtual destructor.
      */
-    blocktesting_impl::~blocktesting_impl()
+    pilotstesting_impl::~pilotstesting_impl()
     {
     }
 
     int
-    blocktesting_impl::work(int noutput_items,
+    pilotstesting_impl::work(int noutput_items,
         gr_vector_const_void_star &input_items,
         gr_vector_void_star &output_items)
-
 
     {
       const gr_complex *in = (const gr_complex *) input_items[0];
@@ -78,12 +77,12 @@ namespace gr {
 			out[i*8192 + carrier] = 0;
                     }
 
-		for (carrier = 0; carrier < 432; carrier++) {
-			out[i*8192 + carrier + 1288 + 2592] = in[i*512 + carrier + 40];
+		for (carrier = 0; carrier < 432*2; carrier++) {
+			out[i*8192 + carrier + 1288 + 2592] = in[i*432*2 + carrier];
                     }
 
     
-		for (carrier = 1288 + 2592 + 432; carrier < 8192; carrier++) {
+		for (carrier = 1288 + 2592 + 432*2; carrier < 8192; carrier++) {
 			out[i*8192 + carrier] = 0;
                     }
 		

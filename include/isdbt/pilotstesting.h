@@ -28,8 +28,8 @@
  */
 
 
-#ifndef INCLUDED_ISDBT_BLOCKTESTING_H
-#define INCLUDED_ISDBT_BLOCKTESTING_H
+#ifndef INCLUDED_ISDBT_PILOTSTESTING_H
+#define INCLUDED_ISDBT_PILOTSTESTING_H
 
 #include <isdbt/api.h>
 #include <gnuradio/sync_block.h>
@@ -42,17 +42,17 @@ namespace gr {
      * \ingroup isdbt
      *
      */
-    class ISDBT_API blocktesting : virtual public gr::sync_block
+    class ISDBT_API pilotstesting : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<blocktesting> sptr;
+      typedef boost::shared_ptr<pilotstesting> sptr;
 
       /*!
-       * \brief Return a shared_ptr to a new instance of isdbt::blocktesting.
+       * \brief Return a shared_ptr to a new instance of isdbt::pilotstesting.
        *
-       * To avoid accidental use of raw pointers, isdbt::blocktesting's
+       * To avoid accidental use of raw pointers, isdbt::pilotstesting's
        * constructor is in a private implementation
-       * class. isdbt::blocktesting::make is the public interface for
+       * class. isdbt::pilotstesting::make is the public interface for
        * creating new instances.
        */
       static sptr make();
@@ -61,5 +61,5 @@ namespace gr {
   } // namespace isdbt
 } // namespace gr
 
-#endif /* INCLUDED_ISDBT_BLOCKTESTING_H */
+#endif /* INCLUDED_ISDBT_PILOTSTESTING_H */
 

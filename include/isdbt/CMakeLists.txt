@@ -59,5 +59,6 @@ install(FILES
     pilotsignals_1seg.h
     tmccencoder_1seg.h
     #morecarriers_1seg.h
-    blocktesting.h DESTINATION include/isdbt
+    #blocktesting.h
+    pilotstesting.h DESTINATION include/isdbt
 )

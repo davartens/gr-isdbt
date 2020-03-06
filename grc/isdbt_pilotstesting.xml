@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>blocktesting</name>
-  <key>isdbt_blocktesting</key>
+  <name>pilotstesting</name>
+  <key>isdbt_pilotstesting</key>
   <category>[isdbt]</category>
   <import>import isdbt</import>
-  <make>isdbt.blocktesting()</make>
+  <make>isdbt.pilotstesting()</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
@@ -13,7 +13,7 @@
   <sink>
     <name>in</name>
     <type>complex<!-- e.g. int, float, complex, byte, short, xxx_vector, ...--></type>
-	<vlen>512</vlen>
+	<vlen>432*2</vlen>
   </sink>
 
   <!-- Make one 'source' node per output. Sub-nodes:

@@ -208,17 +208,6 @@
         <type>int</type>
     </param>
 
-    <check>$nsegs_A + $nsegs_B + $nsegs_C == 13</check>
-    <check>$nsegs_A &gt; -1</check>
-    <check>$nsegs_B &gt; -1</check>
-    <check>$nsegs_C &gt; -1</check>
-    <check>$int_length_A &gt; -1</check>
-    <check>$int_length_B &gt; -1</check>
-    <check>$int_length_C &gt; -1</check>
-    <check>$int_length_A &lt; 16</check>
-    <check>$int_length_B &lt; 16</check>
-    <check>$int_length_C &lt; 16</check>
-
     <sink>
         <name>in</name>
         <type>complex</type>

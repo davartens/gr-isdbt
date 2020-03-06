@@ -27,22 +27,22 @@
  * 
  */
 
-#ifndef INCLUDED_ISDBT_BLOCKTESTING_IMPL_H
-#define INCLUDED_ISDBT_BLOCKTESTING_IMPL_H
+#ifndef INCLUDED_ISDBT_PILOTSTESTING_IMPL_H
+#define INCLUDED_ISDBT_PILOTSTESTING_IMPL_H
 
-#include <isdbt/blocktesting.h>
+#include <isdbt/pilotstesting.h>
 
 namespace gr {
   namespace isdbt {
 
-    class blocktesting_impl : public blocktesting
+    class pilotstesting_impl : public pilotstesting
     {
      private:
       // Nothing to declare in this block.
 
      public:
-      blocktesting_impl();
-      ~blocktesting_impl();
+      pilotstesting_impl();
+      ~pilotstesting_impl();
 
       // Where all the action really happens
       int work(int noutput_items,
@@ -53,5 +53,5 @@ namespace gr {
   } // namespace isdbt
 } // namespace gr
 
-#endif /* INCLUDED_ISDBT_BLOCKTESTING_IMPL_H */
+#endif /* INCLUDED_ISDBT_PILOTSTESTING_IMPL_H */
 

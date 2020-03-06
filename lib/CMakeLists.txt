@@ -65,7 +65,8 @@ list(APPEND isdbt_sources
     pilotsignals_1seg_impl.cc
     tmccencoder_1seg_impl.cc
     #morecarriers_1seg_impl.cc
-    blocktesting_impl.cc )
+    #blocktesting_impl.cc
+    pilotstesting_impl.cc )
 
 set(isdbt_sources "${isdbt_sources}" PARENT_SCOPE)
 if(NOT isdbt_sources)

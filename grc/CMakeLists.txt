@@ -55,5 +55,6 @@ install(FILES
     isdbt_pilotsignals_1seg.xml
     isdbt_tmccencoder_1seg.xml
     #isdbt_morecarriers_1seg.xml
-    isdbt_blocktesting.xml DESTINATION share/gnuradio/grc/blocks
+    #isdbt_blocktesting.xml
+    isdbt_pilotstesting.xml DESTINATION share/gnuradio/grc/blocks
 )

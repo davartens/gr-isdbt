@@ -44,7 +44,8 @@
 #include "isdbt/pilotsignals_1seg.h"
 #include "isdbt/tmccencoder_1seg.h"
 //#include "isdbt/morecarriers_1seg.h"
-#include "isdbt/blocktesting.h"
+#include "isdbt/pilotstesting.h"
+#include "isdbt/pilotstesting.h"
 %}
 
 
@@ -128,5 +129,7 @@ GR_SWIG_BLOCK_MAGIC2(isdbt, pilotsignals_1seg);
 GR_SWIG_BLOCK_MAGIC2(isdbt, tmccencoder_1seg);
 //%include "isdbt/morecarriers_1seg.h"
 //GR_SWIG_BLOCK_MAGIC2(isdbt, morecarriers_1seg);
-%include "isdbt/blocktesting.h"
-GR_SWIG_BLOCK_MAGIC2(isdbt, blocktesting);
+
+
+%include "isdbt/pilotstesting.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, pilotstesting);
