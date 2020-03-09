@@ -1951,7 +1951,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 600)</value>
+      <value>(504, 536)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2092,7 +2092,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 572)</value>
+      <value>(24, 444)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2187,7 +2187,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(400, 676)</value>
+      <value>(200, 596)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2210,12 +2210,52 @@
       <value>1</value>
     </param>
     <param>
+      <key>nsegs_A</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>int_length_B</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>mod_scheme_B</key>
+      <value>64</value>
+    </param>
+    <param>
+      <key>conv_code_B</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>nsegs_B</key>
+      <value>6</value>
+    </param>
+    <param>
+      <key>int_length_C</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>mod_scheme_C</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>conv_code_C</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>nsegs_C</key>
+      <value>6</value>
+    </param>
+    <param>
       <key>maxoutbuf</key>
       <value>0</value>
     </param>
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>one_seg_present</key>
+      <value>True</value>
     </param>
     <param>
       <key>mode</key>
@@ -4286,6 +4326,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>isdbt_postpilots_0</source_block_id>
+    <sink_block_id>isdbt_tmccencoder_1seg_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>isdbt_subset_of_carriers_0</source_block_id>
     <sink_block_id>fft_vxx_1</sink_block_id>
     <source_key>0</source_key>
@@ -4318,6 +4364,12 @@
   <connection>
     <source_block_id>isdbt_tmccencoder_1seg_0</source_block_id>
     <sink_block_id>fft_vxx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>isdbt_tmccencoder_1seg_0</source_block_id>
+    <sink_block_id>isdbt_padding_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

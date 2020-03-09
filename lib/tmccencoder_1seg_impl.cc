@@ -2,10 +2,8 @@
 /*  
  * Copyright 2015, 2016, 2017, 2018
  *   Federico "Larroca" La Rocca <flarroca@fing.edu.uy>
- *   Pablo Belzarena 
- *   Gabriel Gomez Sena 
- *   Pablo Flores Guridi 
- *   Victor Gonzalez Barbone
+ *   Javier Hernández
+ *   Santiago Castro
  * 
  *   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
  *   Universidad de la Republica, Uruguay.
@@ -35,9 +33,9 @@
 #include "tmccencoder_1seg_impl.h"
 
 namespace gr {
-  namespace isdbt {
+    namespace isdbt {
 
-            const int tmccencoder_1seg_impl::d_total_segments = 13; 
+        const int tmccencoder_1seg_impl::d_total_segments = 13; 
         const int tmccencoder_1seg_impl::d_carriers_per_segment_2k = 108;
 
         //Note that lsb bits are indexed by 0 in the bitset. Thus, all
@@ -79,7 +77,7 @@ namespace gr {
                 2693, 2723
         };
         // Mode 3 (8K)
-        const int tmccencoder_1seg_impl::tmcc_carriers_size_8k = 4;
+        const int tmccencoder_1seg_impl::tmcc_carriers_size_8k = 52;
         const int tmccencoder_1seg_impl::tmcc_carriers_8k[] = {
             70, 133, 233, 410, 476, 587, 697, 787, \
                 947, 1033, 1165, 1289, 1319, 1474, 1537, 1637,\
@@ -88,39 +86,41 @@ namespace gr {
                 3505, 3595, 3755, 3841, 3973, 4097, 4127, 4282,\
                 4345, 4445, 4622, 4688, 4799, 4909, 4999, 5159,\
                 5245, 5377, 5501, 5531
+        };
 
-        };//3880 -4312 ---------------- 3973, 4097, 4127, 4282,\
-        
 
-    tmccencoder_1seg::sptr
-    tmccencoder_1seg::make(int mode, int mod_scheme_A, int conv_code_A, int int_length_A)
-    {
-      return gnuradio::get_initial_sptr
-        (new tmccencoder_1seg_impl(mode, mod_scheme_A, conv_code_A, int_length_A));
-    }
+        tmccencoder_1seg::sptr
+            tmccencoder_1seg::make(int mode, bool one_seg_present, int mod_scheme_A, int mod_scheme_B, int mod_scheme_C, int conv_code_A, int conv_code_B, int conv_code_C, int int_length_A, int int_length_B, int int_length_C, int nsegs_A, int nsegs_B, int nsegs_C)
+            {
+                return gnuradio::get_initial_sptr
+                    (new tmccencoder_1seg_impl(mode, one_seg_present, mod_scheme_A, mod_scheme_B, mod_scheme_C, conv_code_A, conv_code_B, conv_code_C, int_length_A, int_length_B, int_length_C, nsegs_A, nsegs_B, nsegs_C));
+            }
 
-    /*
-     * The private constructor
-     */
-    tmccencoder_1seg_impl::tmccencoder_1seg_impl(int mode, int mod_scheme_A, int conv_code_A, int int_length_A)
-      : gr::sync_block("tmccencoder_1seg",
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*432),
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*512))
-    {       
+        /*
+         * The private constructor
+         */
+        tmccencoder_1seg_impl::tmccencoder_1seg_impl(int mode, bool one_seg_present, int mod_scheme_A, int mod_scheme_B, int mod_scheme_C, int conv_code_A, int conv_code_B, int conv_code_C, int int_length_A, int int_length_B, int int_length_C, int nsegs_A, int nsegs_B, int nsegs_C)
+            : gr::sync_block("tmccencoder_1seg",
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*432),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*512))
+        {
+
             d_mode = mode; 
-
-            d_one_seg_present = true;
-
+            d_one_seg_present = one_seg_present;
             d_mod_scheme_A = mod_scheme_A; 
-
+            d_mod_scheme_B = mod_scheme_B; 
+            d_mod_scheme_C = mod_scheme_C; 
             d_conv_code_A = conv_code_A; 
-
+            d_conv_code_B = conv_code_B; 
+            d_conv_code_C = conv_code_C; 
             d_int_length_A = int_length_A;  
-     
-            d_nsegs_A = 1; 
-            
+            d_int_length_B = int_length_B;  
+            d_int_length_C = int_length_C; 
+            d_nsegs_A = nsegs_A; 
+            d_nsegs_B = nsegs_B; 
+            d_nsegs_C = nsegs_C; 
 
-            d_fft_length = 8192; 
+            d_fft_length = pow(2.0,10+mode); 
             // I calculate the tmcc word, which is assigned to d_tmcc_word
             calculate_tmcc_word();
             std::bitset<82> parity = compute_parity();
@@ -129,10 +129,8 @@ namespace gr {
             tmcc_carrier_positions();
 
             d_symbol_count = 0;
-
-            //d_active_carriers = (1+d_total_segments*d_carriers_per_segment_2k*pow(2.0,mode-1)); 
-
-            d_zeros_on_left = 40;
+            d_active_carriers = (1+d_total_segments*d_carriers_per_segment_2k*pow(2.0,mode-1)); 
+            d_zeros_on_left = int(ceil((d_fft_length-d_active_carriers)/2.0)); 
 
         }
 
@@ -229,7 +227,54 @@ namespace gr {
                 bitwise_copy_into(d_tmcc_word, d_mod_scheme_unused, 68);
             }
 
-            
+            if (d_mod_scheme_B == 4 && d_nsegs_B > 0)
+            {
+                //current
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_qpsk, 41);
+                //future (unimplemented as of now)
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_qpsk, 81);
+            } 
+            else if (d_mod_scheme_B == 16 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_16qam, 41);
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_16qam, 81);
+            }
+            else if (d_mod_scheme_B == 64 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_64qam, 41);
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_64qam, 81);
+            }
+            else
+            {
+                // I assume it is not used
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_unused, 41);
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_unused, 81);
+            }
+
+            if (d_mod_scheme_C == 4 && d_nsegs_C > 0)
+            {
+                //current
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_qpsk, 54);
+                //future (unimplemented as of now)
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_qpsk, 94);
+            } 
+            else if (d_mod_scheme_C == 16 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_16qam, 54);
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_16qam, 94);
+            }
+            else if (d_mod_scheme_C == 64 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_64qam, 54);
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_64qam, 94);
+            }
+            else
+            {
+                // I assume it is not used
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_unused, 54);
+                bitwise_copy_into(d_tmcc_word, d_mod_scheme_unused, 94);
+            }
+
             //////////////////////////////////////////////
             // now the encoding rate
             //////////////////////////////////////////////
@@ -264,7 +309,67 @@ namespace gr {
                 bitwise_copy_into(d_tmcc_word, d_conv_code_unused, 71);
             }
 
-            
+            if (d_conv_code_B == 0 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_12, 44);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_12, 84);
+            }
+            else if(d_conv_code_B == 1 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_23, 44);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_23, 84);
+            }
+            else if(d_conv_code_B == 2 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_34, 44);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_34, 84);
+            }
+            else if(d_conv_code_B == 3 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_56, 44);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_56, 84);
+            }
+            else if(d_conv_code_B == 4 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_78, 44);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_78, 84);
+            }
+            else
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_unused, 44);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_unused, 84);
+            }
+
+            if (d_conv_code_C == 0 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_12, 57);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_12, 97);
+            }
+            else if(d_conv_code_C == 1 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_23, 57);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_23, 97);
+            }
+            else if(d_conv_code_C == 2 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_34, 57);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_34, 97);
+            }
+            else if(d_conv_code_C == 3 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_56, 57);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_56, 97);
+            }
+            else if(d_conv_code_C == 4 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_78, 57);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_78, 97);
+            }
+            else
+            {
+                bitwise_copy_into(d_tmcc_word, d_conv_code_unused, 57);
+                bitwise_copy_into(d_tmcc_word, d_conv_code_unused, 97);
+            }
 
             //////////////////////////////////////////////
             //// now the interleaver length
@@ -305,7 +410,71 @@ namespace gr {
                 bitwise_copy_into(d_tmcc_word, std::bitset<3>(0b111), 74); 
             }
 
-            
+            if(d_int_length_B == 0 && d_nsegs_B > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_0, 47); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_0, 87); 
+            }
+            else if((d_mode == 1 && d_int_length_B == 4 && d_nsegs_B > 0) || 
+                    (d_mode == 2 && d_int_length_B == 2 && d_nsegs_B > 0) || 
+                    (d_mode == 3 && d_int_length_B == 1 && d_nsegs_B > 0) )
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_421, 47); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_421, 87); 
+            }
+            else if((d_mode == 1 && d_int_length_B == 8 && d_nsegs_B > 0) || 
+                    (d_mode == 2 && d_int_length_B == 4 && d_nsegs_B > 0) || 
+                    (d_mode == 3 && d_int_length_B == 2 && d_nsegs_B > 0) )
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_842, 47); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_842, 87); 
+            }
+            else if((d_mode == 1 && d_int_length_B == 16 && d_nsegs_B > 0) || 
+                    (d_mode == 2 && d_int_length_B == 8 && d_nsegs_B > 0) || 
+                    (d_mode == 3 && d_int_length_B == 4 && d_nsegs_B > 0) )
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_1684, 47); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_1684, 87); 
+            }
+            else
+            {
+                // unused
+                bitwise_copy_into(d_tmcc_word, std::bitset<3>(0b111), 47); 
+                bitwise_copy_into(d_tmcc_word, std::bitset<3>(0b111), 87); 
+            }
+
+            if(d_int_length_C == 0 && d_nsegs_C > 0)
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_0, 60); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_0, 87); 
+            }
+            else if((d_mode == 1 && d_int_length_C == 4 && d_nsegs_C > 0) || 
+                    (d_mode == 2 && d_int_length_C == 2 && d_nsegs_C > 0) || 
+                    (d_mode == 3 && d_int_length_C == 1 && d_nsegs_C > 0) )
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_421, 60); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_421, 100); 
+            }
+            else if((d_mode == 1 && d_int_length_C == 8 && d_nsegs_C > 0) || 
+                    (d_mode == 2 && d_int_length_C == 4 && d_nsegs_C > 0) || 
+                    (d_mode == 3 && d_int_length_C == 2 && d_nsegs_C > 0) )
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_842, 60); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_842, 100); 
+            }
+            else if((d_mode == 1 && d_int_length_C == 16 && d_nsegs_C > 0) || 
+                    (d_mode == 2 && d_int_length_C == 8 && d_nsegs_C > 0) || 
+                    (d_mode == 3 && d_int_length_C == 4 && d_nsegs_C > 0) )
+            {
+                bitwise_copy_into(d_tmcc_word, d_int_length_1684, 60); 
+                bitwise_copy_into(d_tmcc_word, d_int_length_1684, 100); 
+            }
+            else
+            {
+                // unused
+                bitwise_copy_into(d_tmcc_word, std::bitset<3>(0b111), 60); 
+                bitwise_copy_into(d_tmcc_word, std::bitset<3>(0b111), 100); 
+            }
 
             //////////////////////////////////////////////
             //// now the number of segments
@@ -322,7 +491,27 @@ namespace gr {
                 bitwise_copy_into(d_tmcc_word, std::bitset<4>(0b1111), 77); 
             }
 
-        
+            if (d_nsegs_B > 0 && d_nsegs_B <= 13) {
+                bitwise_copy_into(d_tmcc_word, d_nsegs[d_nsegs_B-1], 50); 
+                bitwise_copy_into(d_tmcc_word, d_nsegs[d_nsegs_B-1], 90); 
+            }
+            else
+            {
+                // I'll assume it's not used
+                bitwise_copy_into(d_tmcc_word, std::bitset<4>(0b1111), 50); 
+                bitwise_copy_into(d_tmcc_word, std::bitset<4>(0b1111), 90); 
+            }
+
+            if (d_nsegs_C > 0 && d_nsegs_C <= 13) {
+                bitwise_copy_into(d_tmcc_word, d_nsegs[d_nsegs_C-1], 63); 
+                bitwise_copy_into(d_tmcc_word, d_nsegs[d_nsegs_C-1], 103); 
+            }
+            else
+            {
+                // I'll assume it's not used
+                bitwise_copy_into(d_tmcc_word, std::bitset<4>(0b1111), 63); 
+                bitwise_copy_into(d_tmcc_word, std::bitset<4>(0b1111), 103); 
+            }
 
 
             ////////////////////////////////////////////////
@@ -429,9 +618,29 @@ namespace gr {
                  * Assign to variables ac_carriers, ac_carriers_size, tmcc_carriers and tmcc_carriers_size
                  * the corresponding values according to the transmission mode
                  */
-                d_tmcc_carriers = tmcc_carriers_8k;
-                d_tmcc_carriers_size = tmcc_carriers_size_8k;
-
+                switch (d_fft_length)
+                {
+                    case 2048:
+                        {
+                            d_tmcc_carriers = tmcc_carriers_2k;
+                            d_tmcc_carriers_size = tmcc_carriers_size_2k;
+                        }
+                        break;
+                    case 4096:
+                        {
+                            d_tmcc_carriers = tmcc_carriers_4k;
+                            d_tmcc_carriers_size = tmcc_carriers_size_4k;
+                        }
+                        break;
+                    case 8192:
+                        {
+                            d_tmcc_carriers = tmcc_carriers_8k;
+                            d_tmcc_carriers_size = tmcc_carriers_size_8k;
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
 
 
@@ -464,29 +673,28 @@ namespace gr {
                         d_last_bit_sent = d_last_bit_sent^d_tmcc_word.test(d_symbol_count);
                     }
                     d_tmcc_pilot = gr_complex(d_last_bit_sent ? 1 : -1, 0);
-
-                    // write the first 40 zeros 
-                    for (int carrier_z = 0; carrier_z < d_zeros_on_left; carrier_z++) {
-                        out[i*512+carrier_z] = 0;
+                      
+                      for (int z_carrier = 0; z_carrier < 40; z_carrier++) {
+                        out[i*512+z_carrier] = 0;
                     }
 
-                    for (int current_tmcc_carrier = 24; current_tmcc_carrier < 4; current_tmcc_carrier++) {
-                        out[i*512 + d_zeros_on_left - 2592 + d_tmcc_carriers[current_tmcc_carrier]] = in[i*432 - 2592 + d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
-                      // out[i*512 + d_zeros_on_left + current_tmcc_carrier] = in[i*432 + current_tmcc_carrier];
-
+                    for (int current_tmcc_carrier = 24; current_tmcc_carrier < 24+4; current_tmcc_carrier++) {
+                        out[i*512+40-2592 +d_tmcc_carriers[current_tmcc_carrier]] = in[i*432 -2592+ d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
                     }
 
-                    // write the last 40 zeros 
-                    for (int carrier_z = 432 + d_zeros_on_left; carrier_z < 512; carrier_z++) {
-                        out[i*512+carrier_z] = 0;
+                    for (int z_carrier = 432+40; z_carrier < 512; z_carrier++) {
+                        out[i*512+z_carrier] = 0;
                     }
+
                     d_symbol_count = (d_symbol_count + 1) % d_tmcc_word.size();
                 }
+
+                      
 
                 // Tell runtime system how many output items we produced.
                 return noutput_items;
             }
 
-  } /* namespace isdbt */
+    } /* namespace isdbt */
 } /* namespace gr */
 

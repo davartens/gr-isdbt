@@ -55,7 +55,7 @@ namespace gr {
        * class. isdbt::tmccencoder_1seg::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int mode, int mod_scheme_A, int conv_code_A, int int_length_A);
+      static sptr make(int mode, bool one_seg_present, int mod_scheme_A, int mod_scheme_B, int mod_scheme_C, int conv_code_A, int conv_code_B, int conv_code_C, int int_length_A, int int_length_B, int int_length_C, int nsegs_A, int nsegs_B, int nsegs_C);
     };
 
   } // namespace isdbt

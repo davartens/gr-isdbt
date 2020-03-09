@@ -2,10 +2,8 @@
 /*  
  * Copyright 2015, 2016, 2017, 2018
  *   Federico "Larroca" La Rocca <flarroca@fing.edu.uy>
- *   Pablo Belzarena 
- *   Gabriel Gomez Sena 
- *   Pablo Flores Guridi 
- *   Victor Gonzalez Barbone
+ *   Javier Hernández
+ *   Santiago Castro
  * 
  *   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
  *   Universidad de la Republica, Uruguay.
@@ -27,18 +25,20 @@
  * 
  */
 
-#ifndef INCLUDED_ISDBT_TMCCENCODER_1SEG_IMPL_H
-#define INCLUDED_ISDBT_TMCCENCODER_1SEG_IMPL_H
+#ifndef INCLUDED_ISDBT_TMCCENCODER_1seg_IMPL_H
+#define INCLUDED_ISDBT_TMCCENCODER_1seg_IMPL_H
 
 #include <isdbt/tmccencoder_1seg.h>
+#include <bitset>
 
 namespace gr {
-  namespace isdbt {
+    namespace isdbt {
 
-    class tmccencoder_1seg_impl : public tmccencoder_1seg
-    {
-     private:
-                      // Number of segments
+        class tmccencoder_1seg_impl : public tmccencoder_1seg
+        {
+            private:
+
+                // Number of segments
                 static const int d_total_segments; 
                 // Total number of active carriers per segment in 2k mode (i'll calculate it for the corresponding mode later)
                 static const int d_carriers_per_segment_2k; 
@@ -72,13 +72,17 @@ namespace gr {
                 // the configuration for which I'll calculate the TMCC word
                 int d_one_seg_present;
                 int d_mod_scheme_A; 
-
+                int d_mod_scheme_B; 
+                int d_mod_scheme_C; 
                 int d_conv_code_A; 
-
+                int d_conv_code_B; 
+                int d_conv_code_C; 
                 int d_int_length_A; 
-
+                int d_int_length_B; 
+                int d_int_length_C; 
                 int d_nsegs_A; 
-
+                int d_nsegs_B; 
+                int d_nsegs_C; 
 
                 // the actual tmcc word 
                 std::bitset<16> d_tmcc_sync_word;
@@ -118,18 +122,18 @@ namespace gr {
                 // Given a binary expression of a GF(2) polynomial, returns the degree < max
                 int get_degree(std::bitset<204> r, int max);
 
-     public:
-      tmccencoder_1seg_impl(int mode, int mod_scheme_A, int conv_code_A, int int_length_A);
-      ~tmccencoder_1seg_impl();
+            public:
+                tmccencoder_1seg_impl(int mode, bool one_seg_present, int mod_scheme_A, int mod_scheme_B, int mod_scheme_C, int conv_code_A, int conv_code_B, int conv_code_C, int int_length_A, int int_length_B, int int_length_C, int nsegs_A, int nsegs_B, int nsegs_C);
+                ~tmccencoder_1seg_impl();
 
-      // Where all the action really happens
-      int work(int noutput_items,
-         gr_vector_const_void_star &input_items,
-         gr_vector_void_star &output_items);
-    };
+                // Where all the action really happens
+                int work(int noutput_items,
+                        gr_vector_const_void_star &input_items,
+                        gr_vector_void_star &output_items);
+        };
 
-  } // namespace isdbt
+    } // namespace isdbt
 } // namespace gr
 
-#endif /* INCLUDED_ISDBT_TMCCENCODER_1SEG_IMPL_H */
+#endif /* INCLUDED_ISDBT_tmccencoder_1seg_IMPL_H */
 

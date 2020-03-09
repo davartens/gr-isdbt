@@ -52,7 +52,6 @@
 #include "qa_timeinterleaver_1seg.h"
 #include "qa_frequencyinterleaver_1seg.h"
 #include "qa_pilotsignals_1seg.h"
-#include "qa_tmccencoder_1seg.h"
 
 CppUnit::TestSuite *
 qa_isdbt::suite()
@@ -84,7 +83,6 @@ qa_isdbt::suite()
   s->addTest(gr::isdbt::qa_timeinterleaver_1seg::suite());
   s->addTest(gr::isdbt::qa_frequencyinterleaver_1seg::suite());
   s->addTest(gr::isdbt::qa_pilotsignals_1seg::suite());
-  s->addTest(gr::isdbt::qa_tmccencoder_1seg::suite());
 
   return s;
 }
