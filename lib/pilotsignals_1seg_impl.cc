@@ -1,11 +1,9 @@
 /* -*- c++ -*- */
 /*  
- * Copyright 2015, 2016, 2017, 2018
+ * Copyright 2017, 2018
  *   Federico "Larroca" La Rocca <flarroca@fing.edu.uy>
- *   Pablo Belzarena 
- *   Gabriel Gomez Sena 
- *   Pablo Flores Guridi 
- *   Victor Gonzalez Barbone
+ *   Santiago Castro
+ *   Javier Hernandez
  * 
  *   Instituto de Ingenieria Electrica, Facultad de Ingenieria,
  *   Universidad de la Republica, Uruguay.
@@ -36,14 +34,14 @@
 #include <volk/volk.h>
 
 namespace gr {
-  namespace isdbt {
+    namespace isdbt {
 
-    const int pilotsignals_1seg_impl::d_total_segments = 13;
+        const int pilotsignals_1seg_impl::d_total_segments = 13;
         const int pilotsignals_1seg_impl::d_data_carriers_per_segment_2k = 96;
         const int pilotsignals_1seg_impl::d_carriers_per_segment_2k = 108;  
         
         // The segments positions
-        //const int pilotsignals_1seg_impl::d_segments_positions[d_total_segments] = {11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12};
+        const int pilotsignals_1seg_impl::d_segments_positions[d_total_segments] = {11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12};
         //const int pilotsignals_1seg_impl::d_segments_positions[d_total_segments] = {6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 11, 0, 12};
 
         // TMCC carriers positions for each transmission mode
@@ -64,26 +62,16 @@ namespace gr {
                 2693, 2723
         };
         // Mode 3 (8K)
-        const int pilotsignals_1seg_impl::tmcc_carriers_size_8k = 4;
+        const int pilotsignals_1seg_impl::tmcc_carriers_size_8k = 52;
         const int pilotsignals_1seg_impl::tmcc_carriers_8k[] = {
-            /*70, 133, 233, 410, 476, 587, 697, 787, \
+            70, 133, 233, 410, 476, 587, 697, 787, \
                 947, 1033, 1165, 1289, 1319, 1474, 1537, 1637,\
                 1814, 1880, 1991, 2101, 2191, 2351, 2437, 2569,\
                 2693, 2723, 2878, 2941, 3041, 3218, 3284, 3395,\
                 3505, 3595, 3755, 3841, 3973, 4097, 4127, 4282,\
                 4345, 4445, 4622, 4688, 4799, 4909, 4999, 5159,\
-                5245, 5377, 5501, 5531*/
-                
-                //133, 257, 287, 442
-                //93, 217, 247, 402
-
-                //2592 - 3024
-                //2693, 2723, 2878, 2941
-                // - 2592
-                101, 131, 286, 349
-
-
-        };//3880 -4312 ---------------- 3973, 4097, 4127, 4282,\
+                5245, 5377, 5501, 5531
+        };
 
         // Auxiliary Channel (AC) position for each transmission mode
         // TODO There are some variables and methods used by both the TX and RX. I've copy-pasted them, but should
@@ -110,9 +98,8 @@ namespace gr {
         };
 
         // Mode 3 (8K)
-        const int pilotsignals_1seg_impl::ac_carriers_size_8k = 7;
+        const int pilotsignals_1seg_impl::ac_carriers_size_8k = 104;
         const int pilotsignals_1seg_impl::ac_carriers_8k[] = {
-            /*
             10, 28, 161, 191, 277, 316, 335, 425,\
                 452, 472, 614, 640, 683, 727, 832, 853,\
                 868, 953, 1012, 1061, 1088, 1144, 1195, 1277,\
@@ -125,41 +112,28 @@ namespace gr {
                 3896, 3952, 4003, 4085, 4202, 4205, 4222, 4240,\
                 4373, 4403, 4489, 4528, 4547, 4637, 4664, 4684,\
                 4826, 4852, 4895, 4939, 5044, 5065, 5080, 5165,\
-                5224, 5273, 5300, 5356, 5407, 5489, 5606, 5609  */
-                
-                //56, 112, 163, 245, 362, 365, 382, 400
-                
-                //2592 - 3024
-                //2599, 2681, 2798, 2801, 2818, 2836, 2969, 2999
-                // - 2592
-                7, 89, 206, 209, 226, 244, 377, 407
-
-                }; 
-                
-                    //3880 -4312 --------------------- 3896, 3952, 4003, 4085, 4202, 4205, 4222, 4240,
+                5224, 5273, 5300, 5356, 5407, 5489, 5606, 5609 };
 
 
-    pilotsignals_1seg::sptr
-    pilotsignals_1seg::make(int mode)
-    {
-      return gnuradio::get_initial_sptr
-        (new pilotsignals_1seg_impl(mode));
-    }
+        pilotsignals_1seg::sptr
+            pilotsignals_1seg::make(int mode)
+            {
+                return gnuradio::get_initial_sptr
+                    (new pilotsignals_1seg_impl(mode));
+            }
 
-    /*
-     * The private constructor
-     */
-    pilotsignals_1seg_impl::pilotsignals_1seg_impl(int mode)
-      : gr::sync_block("pilotsignals_1seg",
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*(d_data_carriers_per_segment_2k*((int)pow(2.0,mode-1)))),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*8192)) //after all this works, change this line for every mode
+        /*
+         * The private constructor
+         */
+        pilotsignals_1seg_impl::pilotsignals_1seg_impl(int mode)
+            : gr::sync_block("pilotsignals_1seg",
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*384),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*432))
+        {
 
-                    //gr::io_signature::make(1, 1, sizeof(gr_complex)*512)) //after all this works, change this line for every mode
-    {
-
-            d_fft_length = 512; 
-            d_active_carriers = (1+d_carriers_per_segment_2k*pow(2.0,mode-1)); 
-            d_data_carriers_size = d_data_carriers_per_segment_2k*pow(2.0,mode-1); 
+            d_fft_length = pow(2.0,10+mode); 
+            d_active_carriers = (1+d_total_segments*d_carriers_per_segment_2k*pow(2.0,mode-1)); 
+            d_data_carriers_size = d_total_segments*d_data_carriers_per_segment_2k*pow(2.0,mode-1); 
             
        
             //VOLK alignment as recommended by GNU Radio's Manual. It has a similar effect 
@@ -168,17 +142,17 @@ namespace gr {
             const int alignment_multiple = volk_get_alignment() / sizeof(gr_complex);
             set_alignment(std::max(1, alignment_multiple));
 
-            d_zeros_on_left = 40;
+            d_zeros_on_left = int(ceil((d_fft_length-d_active_carriers)/2.0)); 
 
             // I generate the pilot's value. It will be used for setting the SP, and performing the XOR in the TMCC carriers. 
             d_pilot_values = new gr_complex[d_active_carriers];
             generate_prbs();
            
             //  assign the TMCC carrier positions based on the mode
-            // tmcc_and_ac_positions(d_fft_length); 
+            tmcc_and_ac_positions(d_fft_length); 
 
-            d_carriers_per_segment = d_active_carriers;
-            d_data_carriers_per_segment = d_data_carriers_size;
+            d_carriers_per_segment = (d_active_carriers-1)/d_total_segments;
+            d_data_carriers_per_segment = d_data_carriers_size/d_total_segments;
 
             d_sp_carriers_size = (d_active_carriers-1)/12; 
 
@@ -188,16 +162,17 @@ namespace gr {
             d_data_carriers_out = new int[4*d_data_carriers_size];
             data_carriers_position();
 
-    }
+        }
 
-    /*
-     * Our virtual destructor.
-     */
-    pilotsignals_1seg_impl::~pilotsignals_1seg_impl()
-    {
+        /*
+         * Our virtual destructor.
+         */
+        pilotsignals_1seg_impl::~pilotsignals_1seg_impl()
+        {
             delete [] d_pilot_values; 
             delete [] d_data_carriers_out; 
-    }
+        }
+
         void
             pilotsignals_1seg_impl::generate_prbs()
             {
@@ -222,7 +197,7 @@ namespace gr {
                 /*
                  * Assign to variables ac_carriers, ac_carriers_size, tmcc_carriers and tmcc_carriers_size
                  * the corresponding values according to the transmission mode
-                 **/
+                 */
                 switch (fft)
                 {
                     case 2048:
@@ -241,7 +216,7 @@ namespace gr {
                             d_ac_carriers_size = ac_carriers_size_4k;
                         }
                         break;
-                    case 512:
+                    case 8192:
                         {
                             d_tmcc_carriers = tmcc_carriers_8k;
                             d_tmcc_carriers_size = tmcc_carriers_size_8k;
@@ -253,8 +228,6 @@ namespace gr {
                         break;
                 }
             }
-            
-        
 
         void
             pilotsignals_1seg_impl::data_carriers_position()
@@ -291,8 +264,9 @@ namespace gr {
                         else 
                         {
                             // carrier_out is thus a data carrier. 
-                            d_data_carriers_out[symbol_index*d_data_carriers_size + (carrier_in%d_data_carriers_per_segment)] = d_zeros_on_left + carrier_out; 
-                            
+                            d_data_carriers_out[symbol_index*d_data_carriers_size + d_segments_positions[carrier_in/d_data_carriers_per_segment]*d_data_carriers_per_segment + (carrier_in%d_data_carriers_per_segment)] =  1288 + carrier_out; 
+                            //d_data_carriers_out[symbol_index*d_data_carriers_size + (carrier_in%d_data_carriers_per_segment)] =  carrier_out; 
+
                             //d_data_carriers_out[symbol_index*d_data_carriers_size + carrier_in] = carrier_out; 
                             carrier_in++;
                         }
@@ -304,68 +278,58 @@ namespace gr {
 
 
 
-
-
-
-
-    int
-    pilotsignals_1seg_impl::work(int noutput_items,
-        gr_vector_const_void_star &input_items,
-        gr_vector_void_star &output_items)
-    {
+        int
+            pilotsignals_1seg_impl::work(int noutput_items,
+                    gr_vector_const_void_star &input_items,
+                    gr_vector_void_star &output_items)
+            {   
                 const gr_complex *in = (const gr_complex *) input_items[0];
                 gr_complex *out = (gr_complex *) output_items[0];
 
                 int carrier = 0;
-
+                int bandera = 0;
                 for (int i=0; i < noutput_items; i++) {
+         
+                                    int in_count = 0;
 
-                    // fill with the first zeros
-                    for (carrier = 0; carrier < d_zeros_on_left; carrier++) {
-                        out[i*d_fft_length+carrier] = 0;
-                    }
-                   
                     // copy the input at the right carriers
-                    for (carrier = 0 ; carrier < d_data_carriers_size; carrier++) {
+                    for (carrier = 0 ; carrier < 384; carrier++) 
                         //out[i*d_fft_length+carrier] = in[i*d_active_carriers+carrier-d_zeros_on_left];
-                        
-                        out[i*d_fft_length + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*d_data_carriers_size + carrier]; 
-                    }
+                        if ((d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] >= 1288 + 2592) && (d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] < 1288+432+2592))
+                            out[i*432  - 1288   - 2592 + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*384 + in_count++];
 
-                    //memcpy(out + i*d_fft_length + d_zeros_on_left, in + i*d_data_carriers, sizeof(gr_complex)*d_data_carriers_size);
-
+                            
+                          
                     
-                    // fill with the last zeros
-                    //for (carrier = d_zeros_on_left+d_active_carriers ; carrier < d_fft_length; carrier++) {
-                    for (carrier = d_zeros_on_left+d_active_carriers ; carrier < 8192; carrier++) {
-                        out[i*d_fft_length+carrier] = 0;
-                    }
-                   
+
+
                    // I now set the scattered pilots 
                     for (int current_sp_carrier = 3*d_current_symbol; current_sp_carrier < d_active_carriers-1; current_sp_carrier+=12) {
-                        out[i*d_fft_length+d_zeros_on_left+current_sp_carrier] = d_pilot_values[current_sp_carrier]; 
+                        if ((current_sp_carrier >= 2592) && (current_sp_carrier < 2592 + 432))
+                            out[i*432 + current_sp_carrier-2592] = d_pilot_values[current_sp_carrier]; 
                     }
-                    
+
                     // I now assign the tmcc carriers with the PRBS
-                    for (int current_tmcc_carrier = 0; current_tmcc_carrier < d_tmcc_carriers_size; current_tmcc_carrier++) {
-                        out[i*d_fft_length+d_zeros_on_left+d_tmcc_carriers[current_tmcc_carrier]] = d_pilot_values[d_tmcc_carriers[current_tmcc_carrier]]; 
+                    for (int current_tmcc_carrier = 24; current_tmcc_carrier < 24+4; current_tmcc_carrier++) {
+                        //if ((d_tmcc_carriers[current_tmcc_carrier] >= 2592) && (d_tmcc_carriers[current_tmcc_carrier] < 2592 + 432))
+                            out[i*432 + d_tmcc_carriers[current_tmcc_carrier]-2592] = d_pilot_values[d_tmcc_carriers[current_tmcc_carrier]]; 
                     }
 
                     // I now assign the ac carriers with the PRBS
-                    for (int current_ac_carrier = 0; current_ac_carrier < d_ac_carriers_size; current_ac_carrier++) {
-                        out[i*d_fft_length+d_zeros_on_left+d_ac_carriers[current_ac_carrier]] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
+                    for (int current_ac_carrier = 48; current_ac_carrier < 48+8; current_ac_carrier++) {
+                        //if ((d_ac_carriers[current_ac_carrier] >= 2592) && (d_ac_carriers[current_ac_carrier] < 2592 + 432))
+                            out[i*432 + d_ac_carriers[current_ac_carrier]-2592] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
                     }
 
 
                     d_current_symbol = (d_current_symbol + 1) % 4;
                 }
 
-      // Do <+signal processing+>
 
-      // Tell runtime system how many output items we produced.
-      return noutput_items;
-    }
+                // Tell runtime system how many output items we produced.
+                return noutput_items;
+            }
 
-  } /* namespace isdbt */
+    } /* namespace isdbt */
 } /* namespace gr */
 

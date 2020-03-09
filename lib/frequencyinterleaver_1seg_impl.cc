@@ -91,8 +91,8 @@ namespace gr {
      */
     frequencyinterleaver_1seg_impl::frequencyinterleaver_1seg_impl(int mode)
       : gr::sync_block("frequencyinterleaver_1seg",
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_total_segments*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
+              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
+              gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
     {
             d_mode = mode; 
             d_1seg = true; 
@@ -159,18 +159,18 @@ namespace gr {
                     {
                         //randomize( &in, &out[i*d_carriers_per_segment]);  
                     
-                    out[i*d_total_carriers + d_random_perm[carrier]] = in[i*d_total_carriers + carrier];
+                    out[i*d_carriers_per_segment + d_random_perm[carrier]] = in[i*384 + carrier];
 
 
 
                     }
-                    for (int carrier=d_carriers_per_segment; carrier<d_total_carriers; carrier++)
+                    /*for (int carrier=d_carriers_per_segment; carrier<d_total_carriers; carrier++)
                     {
                         // a test: delete this part after working
           
                         out[i*d_total_carriers + carrier] = 0;
                         //d_shift[carrier]->pop_front(); 
-                    }
+                    }*/
                 }
 
       // Do <+signal processing+>

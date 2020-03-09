@@ -81,16 +81,14 @@ namespace gr {
         // Mode 3 (8K)
         const int tmccencoder_1seg_impl::tmcc_carriers_size_8k = 4;
         const int tmccencoder_1seg_impl::tmcc_carriers_8k[] = {
-            /*70, 133, 233, 410, 476, 587, 697, 787, \
+            70, 133, 233, 410, 476, 587, 697, 787, \
                 947, 1033, 1165, 1289, 1319, 1474, 1537, 1637,\
                 1814, 1880, 1991, 2101, 2191, 2351, 2437, 2569,\
                 2693, 2723, 2878, 2941, 3041, 3218, 3284, 3395,\
                 3505, 3595, 3755, 3841, 3973, 4097, 4127, 4282,\
                 4345, 4445, 4622, 4688, 4799, 4909, 4999, 5159,\
-                5245, 5377, 5501, 5531*/
-                
-                133, 257, 287, 442
-                //93, 217, 247, 402
+                5245, 5377, 5501, 5531
+
         };//3880 -4312 ---------------- 3973, 4097, 4127, 4282,\
         
 
@@ -106,7 +104,7 @@ namespace gr {
      */
     tmccencoder_1seg_impl::tmccencoder_1seg_impl(int mode, int mod_scheme_A, int conv_code_A, int int_length_A)
       : gr::sync_block("tmccencoder_1seg",
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*512),
+              gr::io_signature::make(1, 1, sizeof(gr_complex)*432),
               gr::io_signature::make(1, 1, sizeof(gr_complex)*512))
     {       
             d_mode = mode; 
@@ -122,7 +120,7 @@ namespace gr {
             d_nsegs_A = 1; 
             
 
-            d_fft_length = 512; 
+            d_fft_length = 8192; 
             // I calculate the tmcc word, which is assigned to d_tmcc_word
             calculate_tmcc_word();
             std::bitset<82> parity = compute_parity();
@@ -431,29 +429,9 @@ namespace gr {
                  * Assign to variables ac_carriers, ac_carriers_size, tmcc_carriers and tmcc_carriers_size
                  * the corresponding values according to the transmission mode
                  */
-                switch (d_fft_length)
-                {
-                    case 2048:
-                        {
-                            d_tmcc_carriers = tmcc_carriers_2k;
-                            d_tmcc_carriers_size = tmcc_carriers_size_2k;
-                        }
-                        break;
-                    case 4096:
-                        {
-                            d_tmcc_carriers = tmcc_carriers_4k;
-                            d_tmcc_carriers_size = tmcc_carriers_size_4k;
-                        }
-                        break;
-                    case 8192:
-                        {
-                            d_tmcc_carriers = tmcc_carriers_8k;
-                            d_tmcc_carriers_size = tmcc_carriers_size_8k;
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                d_tmcc_carriers = tmcc_carriers_8k;
+                d_tmcc_carriers_size = tmcc_carriers_size_8k;
+
             }
 
 
@@ -469,7 +447,7 @@ namespace gr {
                 for (int i=0; i < noutput_items; i++){
 
                     // I first copy the input on the output
-                    memcpy(out + i*d_fft_length, in + i*d_fft_length, d_fft_length*sizeof(gr_complex)); 
+                    memcpy(out + i*512 + 40, in + i*432, 432*sizeof(gr_complex)); 
 
                     // I now assign the tmcc carriers (PRBS should be set in the previous block)
                     if (d_symbol_count == 0)
@@ -486,11 +464,22 @@ namespace gr {
                         d_last_bit_sent = d_last_bit_sent^d_tmcc_word.test(d_symbol_count);
                     }
                     d_tmcc_pilot = gr_complex(d_last_bit_sent ? 1 : -1, 0);
-                    
-                    for (int current_tmcc_carrier = 0; current_tmcc_carrier < d_tmcc_carriers_size; current_tmcc_carrier++) {
-                        out[i*d_fft_length+d_zeros_on_left+d_tmcc_carriers[current_tmcc_carrier]] = in[i*d_fft_length+d_zeros_on_left + d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
+
+                    // write the first 40 zeros 
+                    for (int carrier_z = 0; carrier_z < d_zeros_on_left; carrier_z++) {
+                        out[i*512+carrier_z] = 0;
                     }
 
+                    for (int current_tmcc_carrier = 24; current_tmcc_carrier < 4; current_tmcc_carrier++) {
+                        out[i*512 + d_zeros_on_left - 2592 + d_tmcc_carriers[current_tmcc_carrier]] = in[i*432 - 2592 + d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
+                      // out[i*512 + d_zeros_on_left + current_tmcc_carrier] = in[i*432 + current_tmcc_carrier];
+
+                    }
+
+                    // write the last 40 zeros 
+                    for (int carrier_z = 432 + d_zeros_on_left; carrier_z < 512; carrier_z++) {
+                        out[i*512+carrier_z] = 0;
+                    }
                     d_symbol_count = (d_symbol_count + 1) % d_tmcc_word.size();
                 }
 

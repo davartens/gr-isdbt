@@ -43,6 +43,8 @@
 #include "isdbt/frequencyinterleaver_1seg.h"
 #include "isdbt/pilotsignals_1seg.h"
 #include "isdbt/tmccencoder_1seg.h"
+#include "isdbt/prepilots.h"
+#include "isdbt/postpilots.h"
 %}
 
 
@@ -124,3 +126,7 @@ GR_SWIG_BLOCK_MAGIC2(isdbt, frequencyinterleaver_1seg);
 GR_SWIG_BLOCK_MAGIC2(isdbt, pilotsignals_1seg);
 %include "isdbt/tmccencoder_1seg.h"
 GR_SWIG_BLOCK_MAGIC2(isdbt, tmccencoder_1seg);
+%include "isdbt/prepilots.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, prepilots);
+%include "isdbt/postpilots.h"
+GR_SWIG_BLOCK_MAGIC2(isdbt, postpilots);

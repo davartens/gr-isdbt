@@ -82,7 +82,7 @@
     <sink>
         <name>in</name>
         <type>complex</type>
-        <vlen>512</vlen>
+        <vlen>432</vlen>
     </sink>
     <source>
         <name>out</name>

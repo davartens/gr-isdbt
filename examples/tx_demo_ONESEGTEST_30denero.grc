@@ -761,7 +761,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
@@ -871,7 +871,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(624, 572)</value>
+      <value>(872, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -899,7 +899,7 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>data_carriers</value>
+      <value>data_carriers/13</value>
     </param>
   </block>
   <block>
@@ -969,7 +969,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1071,7 +1071,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1244,7 +1244,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1370,7 +1370,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>gfpoly</key>
@@ -1555,7 +1555,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1661,7 +1661,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1767,7 +1767,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1826,7 +1826,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 580)</value>
+      <value>(1040, 580)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1835,61 +1835,6 @@
     <param>
       <key>id</key>
       <value>isdbt_frequencyinterleaver_1seg_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>mode</key>
-      <value>3</value>
-    </param>
-  </block>
-  <block>
-    <key>isdbt_hierarchical_combinator</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1336, 552)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>180</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>isdbt_hierarchical_combinator_0</value>
-    </param>
-    <param>
-      <key>segments_A</key>
-      <value>segments_a</value>
-    </param>
-    <param>
-      <key>segments_B</key>
-      <value>segments_b</value>
-    </param>
-    <param>
-      <key>segments_C</key>
-      <value>0</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1920,7 +1865,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1963,7 +1908,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 676)</value>
+      <value>(632, 580)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1984,6 +1929,45 @@
     <param>
       <key>mode</key>
       <value>3</value>
+    </param>
+  </block>
+  <block>
+    <key>isdbt_postpilots</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 600)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>isdbt_postpilots_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
   </block>
   <block>
@@ -2057,7 +2041,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1064, 564)</value>
+      <value>(1296, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2104,7 +2088,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2177,6 +2161,61 @@
     <param>
       <key>one_seg_present</key>
       <value>True</value>
+    </param>
+    <param>
+      <key>mode</key>
+      <value>3</value>
+    </param>
+  </block>
+  <block>
+    <key>isdbt_tmccencoder_1seg</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(400, 676)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>180</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>isdbt_tmccencoder_1seg_0</value>
+    </param>
+    <param>
+      <key>int_length_A</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>mod_scheme_A</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>conv_code_A</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
     </param>
     <param>
       <key>mode</key>
@@ -4200,15 +4239,9 @@
   </connection>
   <connection>
     <source_block_id>isdbt_carrier_modulation_0</source_block_id>
-    <sink_block_id>isdbt_hierarchical_combinator_0</sink_block_id>
+    <sink_block_id>isdbt_timeinterleaver_1seg_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>isdbt_carrier_modulation_0_0</source_block_id>
-    <sink_block_id>isdbt_hierarchical_combinator_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>isdbt_energy_dispersal_0</source_block_id>
@@ -4229,12 +4262,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>isdbt_hierarchical_combinator_0</source_block_id>
-    <sink_block_id>isdbt_timeinterleaver_1seg_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>isdbt_padding_0</source_block_id>
     <sink_block_id>fft_vxx_1</sink_block_id>
     <source_key>0</source_key>
@@ -4242,6 +4269,18 @@
   </connection>
   <connection>
     <source_block_id>isdbt_pilotsignals_1seg_0</source_block_id>
+    <sink_block_id>isdbt_postpilots_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>isdbt_pilotsignals_1seg_0</source_block_id>
+    <sink_block_id>isdbt_tmccencoder_1seg_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>isdbt_postpilots_0</source_block_id>
     <sink_block_id>isdbt_tmcc_encoder_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -4273,6 +4312,12 @@
   <connection>
     <source_block_id>isdbt_tmcc_encoder_0</source_block_id>
     <sink_block_id>isdbt_subset_of_carriers_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>isdbt_tmccencoder_1seg_0</source_block_id>
+    <sink_block_id>fft_vxx_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

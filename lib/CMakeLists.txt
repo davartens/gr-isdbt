@@ -63,7 +63,9 @@ list(APPEND isdbt_sources
     timeinterleaver_1seg_impl.cc
     frequencyinterleaver_1seg_impl.cc
     pilotsignals_1seg_impl.cc
-    tmccencoder_1seg_impl.cc )
+    tmccencoder_1seg_impl.cc
+    prepilots_impl.cc
+    postpilots_impl.cc )
 
 set(isdbt_sources "${isdbt_sources}" PARENT_SCOPE)
 if(NOT isdbt_sources)
