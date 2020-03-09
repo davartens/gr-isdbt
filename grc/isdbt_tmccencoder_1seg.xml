@@ -4,7 +4,7 @@
   <key>isdbt_tmccencoder_1seg</key>
   <category>[isdbt]</category>
   <import>import isdbt</import>
-    <make>isdbt.tmccencoder_1seg($mode, $one_seg_present, $mod_scheme_A, $mod_scheme_B, $mod_scheme_C, $conv_code_A, $conv_code_B, $conv_code_C, $int_length_A, $int_length_B, $int_length_C, $nsegs_A, $nsegs_B, $nsegs_C)</make>
+    <make>isdbt.tmccencoder_1seg($mode, True, $mod_scheme_A, 4, 4, $conv_code_A, 2, 2, $int_length_A, 4, 4, 1, 12, 0)</make>
    <param>
         <name>Transmission Mode</name>
         <key>mode</key>
@@ -22,26 +22,6 @@
             <name>MODE3(8K)</name>
             <key>3</key>
         </option>
-    </param>
-    <param>
-        <name>Oneseg</name>
-        <key>one_seg_present</key>
-        <value>True</value>
-        <type>enum</type>
-        <option>
-            <name>Yes</name>
-            <key>True</key>
-        </option>
-        <option>
-            <name>No</name>
-            <key>False</key>
-        </option>
-    </param>
-
-    <param>
-        <name>Layer A Segments</name>
-        <key>nsegs_A</key>
-        <type>int</type>
     </param>
 
     <param>
@@ -95,130 +75,6 @@
         <type>int</type>
     </param>
 
-    <param>
-        <name>Layer B Segments</name>
-        <key>nsegs_B</key>
-        <type>int</type>
-    </param>
-
-    <param>
-        <name>Layer B Modulation Scheme</name>
-        <key>mod_scheme_B</key>
-        <value>4</value>
-        <type>enum</type>
-        <option>
-            <name>QPSK</name>
-            <key>4</key>
-        </option>
-        <option>
-            <name>16QAM</name>
-            <key>16</key>
-        </option>
-        <option>
-            <name>64QAM</name>
-            <key>64</key>
-        </option>
-    </param>
-
-    <param>
-        <name>Layer B Rate</name>
-        <key>conv_code_B</key>
-        <value>0</value>
-        <type>enum</type>
-        <option>
-            <name>1/2</name>
-            <key>0</key>
-        </option>
-        <option>
-            <name>2/3</name>
-            <key>1</key>
-        </option>
-        <option>
-            <name>3/4</name>
-            <key>2</key>
-        </option>
-        <option>
-            <name>5/6</name>
-            <key>3</key>
-        </option>
-        <option>
-            <name>7/8</name>
-            <key>4</key>
-        </option>
-    </param>
-    <param>
-        <name>Layer B Interleaver Length</name>
-        <key>int_length_B</key>
-        <type>int</type>
-    </param>
-
-    <param>
-        <name>Layer C Segments</name>
-        <key>nsegs_C</key>
-        <type>int</type>
-    </param>
-
-    <param>
-        <name>Layer C Modulation Scheme</name>
-        <key>mod_scheme_C</key>
-        <value>4</value>
-        <type>enum</type>
-        <option>
-            <name>QPSK</name>
-            <key>4</key>
-        </option>
-        <option>
-            <name>16QAM</name>
-            <key>16</key>
-        </option>
-        <option>
-            <name>64QAM</name>
-            <key>64</key>
-        </option>
-    </param>
-
-    <param>
-        <name>Layer C Rate</name>
-        <key>conv_code_C</key>
-        <value>0</value>
-        <type>enum</type>
-        <option>
-            <name>1/2</name>
-            <key>0</key>
-        </option>
-        <option>
-            <name>2/3</name>
-            <key>1</key>
-        </option>
-        <option>
-            <name>3/4</name>
-            <key>2</key>
-        </option>
-        <option>
-            <name>5/6</name>
-            <key>3</key>
-        </option>
-        <option>
-            <name>7/8</name>
-            <key>4</key>
-        </option>
-    </param>
-    <param>
-        <name>Layer C Interleaver Length</name>
-        <key>int_length_C</key>
-        <type>int</type>
-    </param>
-
-    <check>$nsegs_A + $nsegs_B + $nsegs_C == 13</check>
-    <check>$nsegs_A &gt; -1</check>
-    <check>$nsegs_B &gt; -1</check>
-    <check>$nsegs_C &gt; -1</check>
-    <check>$int_length_A &gt; -1</check>
-    <check>$int_length_B &gt; -1</check>
-    <check>$int_length_C &gt; -1</check>
-    <check>$int_length_A &lt; 16</check>
-    <check>$int_length_B &lt; 16</check>
-    <check>$int_length_C &lt; 16</check>
 
     <sink>
         <name>in</name>
