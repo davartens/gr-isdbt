@@ -59,6 +59,7 @@ namespace gr {
     {
             d_mode = mode; 
             d_I_A = length_A; 
+            d_nsegments_A = segments_A;
 
 
             d_carriers_per_segment = d_data_carriers_mode1*((int)pow(2.0,mode-1)); 
