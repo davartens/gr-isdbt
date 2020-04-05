@@ -127,8 +127,8 @@ namespace gr {
          */
         pilotsignals_1seg_impl::pilotsignals_1seg_impl(int mode)
             : gr::sync_block("pilotsignals_1seg",
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*384),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*432))
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*192),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*216))
         {
 
             d_fft_length = pow(2.0,10+mode); 
@@ -264,7 +264,7 @@ namespace gr {
                         else 
                         {
                             // carrier_out is thus a data carrier. 
-                            d_data_carriers_out[symbol_index*d_data_carriers_size + d_segments_positions[carrier_in/d_data_carriers_per_segment]*d_data_carriers_per_segment + (carrier_in%d_data_carriers_per_segment)] =  1288 + carrier_out; 
+                            d_data_carriers_out[symbol_index*d_data_carriers_size + d_segments_positions[carrier_in/d_data_carriers_per_segment]*d_data_carriers_per_segment + (carrier_in%d_data_carriers_per_segment)] =  644 + carrier_out; 
                             //d_data_carriers_out[symbol_index*d_data_carriers_size + (carrier_in%d_data_carriers_per_segment)] =  carrier_out; 
 
                             //d_data_carriers_out[symbol_index*d_data_carriers_size + carrier_in] = carrier_out; 
@@ -293,10 +293,10 @@ namespace gr {
                                     int in_count = 0;
 
                     // copy the input at the right carriers
-                    for (carrier = 0 ; carrier < 384; carrier++) 
+                    for (carrier = 0 ; carrier < 192; carrier++) 
                         //out[i*d_fft_length+carrier] = in[i*d_active_carriers+carrier-d_zeros_on_left];
-                        if ((d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] >= 1288 + 2592) && (d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] < 1288+432+2592))
-                            out[i*432  - 1288   - 2592 + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*384 + in_count++];
+                        if ((d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] >= 644 + 1296) && (d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] < 644+216+1296))
+                            out[i*216  - 644   - 1296 + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*192 + in_count++];
 
                             
                           
@@ -305,20 +305,20 @@ namespace gr {
 
                    // I now set the scattered pilots 
                     for (int current_sp_carrier = 3*d_current_symbol; current_sp_carrier < d_active_carriers-1; current_sp_carrier+=12) {
-                        if ((current_sp_carrier >= 2592) && (current_sp_carrier < 2592 + 432))
-                            out[i*432 + current_sp_carrier-2592] = d_pilot_values[current_sp_carrier]; 
+                        if ((current_sp_carrier >= 1296) && (current_sp_carrier < 1296 + 216))
+                            out[i*216 + current_sp_carrier-1296] = d_pilot_values[current_sp_carrier]; 
                     }
 
                     // I now assign the tmcc carriers with the PRBS
-                    for (int current_tmcc_carrier = 24; current_tmcc_carrier < 24+4; current_tmcc_carrier++) {
+                    for (int current_tmcc_carrier = 12; current_tmcc_carrier <= 13; current_tmcc_carrier++) {
                         //if ((d_tmcc_carriers[current_tmcc_carrier] >= 2592) && (d_tmcc_carriers[current_tmcc_carrier] < 2592 + 432))
-                            out[i*432 + d_tmcc_carriers[current_tmcc_carrier]-2592] = d_pilot_values[d_tmcc_carriers[current_tmcc_carrier]]; 
+                            out[i*216 + d_tmcc_carriers[current_tmcc_carrier]-1296] = d_pilot_values[d_tmcc_carriers[current_tmcc_carrier]]; 
                     }
 
                     // I now assign the ac carriers with the PRBS
-                    for (int current_ac_carrier = 48; current_ac_carrier < 48+8; current_ac_carrier++) {
+                    for (int current_ac_carrier = 24; current_ac_carrier < 24+4; current_ac_carrier++) {
                         //if ((d_ac_carriers[current_ac_carrier] >= 2592) && (d_ac_carriers[current_ac_carrier] < 2592 + 432))
-                            out[i*432 + d_ac_carriers[current_ac_carrier]-2592] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
+                            out[i*216 + d_ac_carriers[current_ac_carrier]-1296] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
                     }
 
 

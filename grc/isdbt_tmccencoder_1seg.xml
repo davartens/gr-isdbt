@@ -79,12 +79,12 @@
     <sink>
         <name>in</name>
         <type>complex</type>
-        <vlen>432</vlen>
+        <vlen>216</vlen>
     </sink>
     <source>
         <name>out</name>
         <type>complex</type>
-        <vlen>512</vlen>
+        <vlen>256</vlen>
     </source>
 
 </block>

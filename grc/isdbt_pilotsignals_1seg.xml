@@ -36,6 +36,6 @@
   <source>
     <name>out</name>
     <type>complex</type>
-    <vlen>432</vlen>
+    <vlen>216</vlen>
   </source>
 </block>

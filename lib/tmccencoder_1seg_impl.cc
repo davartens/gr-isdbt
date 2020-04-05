@@ -101,8 +101,8 @@ namespace gr {
          */
         tmccencoder_1seg_impl::tmccencoder_1seg_impl(int mode, bool one_seg_present, int mod_scheme_A, int mod_scheme_B, int mod_scheme_C, int conv_code_A, int conv_code_B, int conv_code_C, int int_length_A, int int_length_B, int int_length_C, int nsegs_A, int nsegs_B, int nsegs_C)
             : gr::sync_block("tmccencoder_1seg",
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*432),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*512))
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*216),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*256))
         {
 
             d_mode = mode; 
@@ -656,7 +656,7 @@ namespace gr {
                 for (int i=0; i < noutput_items; i++){
 
                     // I first copy the input on the output
-                    memcpy(out + i*512 + 40, in + i*432, 432*sizeof(gr_complex)); 
+                    memcpy(out + i*256 + 20, in + i*216, 216*sizeof(gr_complex)); 
 
                     // I now assign the tmcc carriers (PRBS should be set in the previous block)
                     if (d_symbol_count == 0)
@@ -674,16 +674,16 @@ namespace gr {
                     }
                     d_tmcc_pilot = gr_complex(d_last_bit_sent ? 1 : -1, 0);
                       
-                      for (int z_carrier = 0; z_carrier < 40; z_carrier++) {
-                        out[i*512+z_carrier] = 0;
+                      for (int z_carrier = 0; z_carrier < 20; z_carrier++) {
+                        out[i*256+z_carrier] = 0;
                     }
 
-                    for (int current_tmcc_carrier = 24; current_tmcc_carrier < 24+4; current_tmcc_carrier++) {
-                        out[i*512+40-2592 +d_tmcc_carriers[current_tmcc_carrier]] = in[i*432 -2592+ d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
+                    for (int current_tmcc_carrier = 12; current_tmcc_carrier <= 13; current_tmcc_carrier++) {
+                        out[i*256+20-1296 +d_tmcc_carriers[current_tmcc_carrier]] = in[i*216 -1296+ d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
                     }
 
-                    for (int z_carrier = 432+40; z_carrier < 512; z_carrier++) {
-                        out[i*512+z_carrier] = 0;
+                    for (int z_carrier = 216+20; z_carrier < 256; z_carrier++) {
+                        out[i*256+z_carrier] = 0;
                     }
 
                     d_symbol_count = (d_symbol_count + 1) % d_tmcc_word.size();
