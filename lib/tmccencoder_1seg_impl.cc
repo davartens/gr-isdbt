@@ -101,8 +101,8 @@ namespace gr {
          */
         tmccencoder_1seg_impl::tmccencoder_1seg_impl(int mode, bool one_seg_present, int mod_scheme_A, int mod_scheme_B, int mod_scheme_C, int conv_code_A, int conv_code_B, int conv_code_C, int int_length_A, int int_length_B, int int_length_C, int nsegs_A, int nsegs_B, int nsegs_C)
             : gr::sync_block("tmccencoder_1seg",
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*216),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*256))
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_carriers_per_segment_2k*((int)pow(2.0,mode-1))),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*512/pow(2.0,3-mode)))
         {
 
             d_mode = mode; 
@@ -130,7 +130,7 @@ namespace gr {
 
             d_symbol_count = 0;
             d_active_carriers = (1+d_total_segments*d_carriers_per_segment_2k*pow(2.0,mode-1)); 
-            d_zeros_on_left = int(ceil((d_fft_length-d_active_carriers)/2.0)); 
+            //d_zeros_on_left = int(ceil((d_fft_length-d_active_carriers)/2.0)); 
 
         }
 
@@ -622,20 +622,39 @@ namespace gr {
                 {
                     case 2048:
                         {
+                            d_active_carrier_aux = 108;       
+                            first_tmcc_carrier_position = 6;
+                            last_tmcc_carrier_position = 7;
+                            d_one_seg_start = 648;
+                            d_zeros_on_left = 10;
                             d_tmcc_carriers = tmcc_carriers_2k;
                             d_tmcc_carriers_size = tmcc_carriers_size_2k;
+                            fft = 128;
                         }
                         break;
                     case 4096:
                         {
+                            d_active_carrier_aux = 216;
+                            first_tmcc_carrier_position = 12;
+                            last_tmcc_carrier_position = 14;
+                            d_one_seg_start = 1296;                            
+                            d_zeros_on_left = 20;
                             d_tmcc_carriers = tmcc_carriers_4k;
                             d_tmcc_carriers_size = tmcc_carriers_size_4k;
+                            fft = 256;
                         }
                         break;
                     case 8192:
-                        {
+                        {                 
+                            d_active_carrier_aux = 108*4;          
+                            first_tmcc_carrier_position = 24 ;
+                            last_tmcc_carrier_position = 24+4;
+                            d_one_seg_start = 2592;
+                            d_zeros_on_left = 40;
+
                             d_tmcc_carriers = tmcc_carriers_8k;
                             d_tmcc_carriers_size = tmcc_carriers_size_8k;
+                            fft = 512;
                         }
                         break;
                     default:
@@ -656,7 +675,7 @@ namespace gr {
                 for (int i=0; i < noutput_items; i++){
 
                     // I first copy the input on the output
-                    memcpy(out + i*256 + 20, in + i*216, 216*sizeof(gr_complex)); 
+                    memcpy(out + i*fft + d_zeros_on_left, in + i*d_active_carrier_aux, d_active_carrier_aux*sizeof(gr_complex)); 
 
                     // I now assign the tmcc carriers (PRBS should be set in the previous block)
                     if (d_symbol_count == 0)
@@ -674,16 +693,16 @@ namespace gr {
                     }
                     d_tmcc_pilot = gr_complex(d_last_bit_sent ? 1 : -1, 0);
                       
-                      for (int z_carrier = 0; z_carrier < 20; z_carrier++) {
-                        out[i*256+z_carrier] = 0;
+                      for (int z_carrier = 0; z_carrier < d_zeros_on_left; z_carrier++) {
+                        out[i*fft+z_carrier] = 0;
                     }
 
-                    for (int current_tmcc_carrier = 12; current_tmcc_carrier <= 13; current_tmcc_carrier++) {
-                        out[i*256+20-1296 +d_tmcc_carriers[current_tmcc_carrier]] = in[i*216 -1296+ d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
+                    for (int current_tmcc_carrier = first_tmcc_carrier_position; current_tmcc_carrier < last_tmcc_carrier_position; current_tmcc_carrier++) {
+                        out[i*fft+d_zeros_on_left-d_one_seg_start +d_tmcc_carriers[current_tmcc_carrier]] = in[i*d_active_carrier_aux -d_one_seg_start+ d_tmcc_carriers[current_tmcc_carrier]]*d_tmcc_pilot;
                     }
 
-                    for (int z_carrier = 216+20; z_carrier < 256; z_carrier++) {
-                        out[i*256+z_carrier] = 0;
+                    for (int z_carrier = d_active_carrier_aux+d_zeros_on_left; z_carrier < fft; z_carrier++) {
+                        out[i*fft+z_carrier] = 0;
                     }
 
                     d_symbol_count = (d_symbol_count + 1) % d_tmcc_word.size();

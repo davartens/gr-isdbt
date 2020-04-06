@@ -84,6 +84,13 @@ namespace gr {
                 int d_nsegs_B; 
                 int d_nsegs_C; 
 
+                int d_one_seg_start;
+                int first_tmcc_carrier_position;
+                int last_tmcc_carrier_position;
+                int d_active_carrier_aux;
+                int d_data_carrier_aux;
+                int fft;
+
                 // the actual tmcc word 
                 std::bitset<16> d_tmcc_sync_word;
                 std::bitset<204> d_tmcc_word;

@@ -53,6 +53,8 @@ namespace gr {
                 static const int d_random_perm_mode2[]; 
                 static const int d_random_perm_mode3[]; 
 
+                int d_carriers_per_segment_aux;
+
                 /*The current random permutation matrix*/
                 const int * d_random_perm; 
 

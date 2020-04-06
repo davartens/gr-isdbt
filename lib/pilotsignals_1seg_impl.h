@@ -78,13 +78,20 @@ namespace gr {
                 int d_fft_length;
                 int d_active_carriers; 
                 int d_data_carriers_size;
+                int d_one_seg_start;
 
                 // In the i-th position it contains the outgoing carrier position of the original i-th carrier 
                 // (i.e. only counting data carriers, not pilots nor TMCC nor AC, plus the segment reordering)
                 int * d_data_carriers_out;
                 
                 int d_zeros_on_left;
-                
+                int d_active_carrier_aux;
+                int d_data_carrier_aux;
+                int first_ac_carrier_position;
+                int last_ac_carrier_position;
+                int first_tmcc_carrier_position;
+                int last_tmcc_carrier_position;
+
                 gr_complex * d_pilot_values; 
                 int d_sp_carriers_size;
 

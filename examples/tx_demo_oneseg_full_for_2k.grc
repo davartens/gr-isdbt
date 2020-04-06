@@ -360,7 +360,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -957,7 +957,7 @@
     </param>
     <param>
       <key>cp_len</key>
-      <value>int(512*guard)</value>
+      <value>int(256*guard/2)</value>
     </param>
     <param>
       <key>comment</key>
@@ -973,7 +973,7 @@
     </param>
     <param>
       <key>input_size</key>
-      <value>512</value>
+      <value>256/2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1154,7 +1154,7 @@
     </param>
     <param>
       <key>fft_size</key>
-      <value>512</value>
+      <value>256/2</value>
     </param>
     <param>
       <key>forward</key>
@@ -1194,7 +1194,7 @@
     </param>
     <param>
       <key>window</key>
-      <value>window.rectangular(512)</value>
+      <value>window.rectangular(256/2)</value>
     </param>
   </block>
   <block>
@@ -1249,7 +1249,7 @@
     </param>
     <param>
       <key>mode</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1300,7 +1300,7 @@
     </param>
     <param>
       <key>mode</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1355,7 +1355,7 @@
     </param>
     <param>
       <key>mode</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1398,7 +1398,7 @@
     </param>
     <param>
       <key>mode</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1441,7 +1441,7 @@
     </param>
     <param>
       <key>mode</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1511,7 +1511,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1543,7 +1543,7 @@
     </param>
     <param>
       <key>mode</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1598,7 +1598,7 @@
     </param>
     <param>
       <key>mode</key>
-      <value>3</value>
+      <value>1</value>
     </param>
   </block>
   <block>

@@ -39,7 +39,7 @@ namespace gr {
 
         const int frequencyinterleaver_1seg_impl::d_data_carriers_mode1 = 96; 
         const int frequencyinterleaver_1seg_impl::d_total_segments = 13; 
-
+        
 
 
          const int frequencyinterleaver_1seg_impl::d_random_perm_mode1[] = 
@@ -90,9 +90,9 @@ namespace gr {
      * The private constructor
      */
     frequencyinterleaver_1seg_impl::frequencyinterleaver_1seg_impl(int mode)
-      : gr::sync_block("frequencyinterleaver_1seg",
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*192),
-              gr::io_signature::make(1, 1, sizeof(gr_complex)*192))
+            : gr::sync_block("frequency_deinterleaver_1seg",
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_mode1*((int)pow(2.0,mode-1))))
     {
             d_mode = mode; 
             d_1seg = true; 
@@ -103,10 +103,13 @@ namespace gr {
             d_rotated = new gr_complex [d_total_carriers]; 
 
             if (d_mode==1){
-                d_random_perm = d_random_perm_mode1; 
+                d_random_perm = d_random_perm_mode1;
+                d_carriers_per_segment_aux = 96;
             } else if (d_mode==2){
                 d_random_perm = d_random_perm_mode2; 
+                d_carriers_per_segment_aux = 192;
             } else if (d_mode==3){
+                d_carriers_per_segment_aux = 192*2;
                 d_random_perm = d_random_perm_mode3; 
             } else {
                 printf("ISDB-t frequency interleaver: mode not correctly specified (it should be either 1, 2 or 3). "); 
@@ -159,7 +162,7 @@ namespace gr {
                     {
                         //randomize( &in, &out[i*d_carriers_per_segment]);  
                     
-                    out[i*192 + d_random_perm[carrier]] = in[i*192 + carrier];
+                    out[i*d_carriers_per_segment_aux + d_random_perm[carrier]] = in[i*d_carriers_per_segment_aux + carrier];
 
 
 

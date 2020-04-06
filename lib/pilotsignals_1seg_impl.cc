@@ -127,8 +127,8 @@ namespace gr {
          */
         pilotsignals_1seg_impl::pilotsignals_1seg_impl(int mode)
             : gr::sync_block("pilotsignals_1seg",
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*192),
-                    gr::io_signature::make(1, 1, sizeof(gr_complex)*216))
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_data_carriers_per_segment_2k*((int)pow(2.0,mode-1))),
+                    gr::io_signature::make(1, 1, sizeof(gr_complex)*d_carriers_per_segment_2k*((int)pow(2.0,mode-1))))
         {
 
             d_fft_length = pow(2.0,10+mode); 
@@ -201,7 +201,15 @@ namespace gr {
                 switch (fft)
                 {
                     case 2048:
-                        {
+                        {                            
+                            d_active_carrier_aux = 108;
+                            d_data_carrier_aux = 96;
+                            d_zeros_on_left = 322;
+                            d_one_seg_start = 648;
+                            first_ac_carrier_position = 12;
+                            last_ac_carrier_position = 14;
+                            first_tmcc_carrier_position = 6;
+                            last_tmcc_carrier_position = 7;
                             d_tmcc_carriers = tmcc_carriers_2k;
                             d_tmcc_carriers_size = tmcc_carriers_size_2k;
                             d_ac_carriers = ac_carriers_2k;
@@ -210,6 +218,14 @@ namespace gr {
                         break;
                     case 4096:
                         {
+                            d_active_carrier_aux = 216;
+                            d_data_carrier_aux = 192;
+                            d_zeros_on_left = 644;
+                            d_one_seg_start = 1296;
+                            first_ac_carrier_position = 24;
+                            last_ac_carrier_position = 24+4;
+                            first_tmcc_carrier_position = 12;
+                            last_tmcc_carrier_position = 14;
                             d_tmcc_carriers = tmcc_carriers_4k;
                             d_tmcc_carriers_size = tmcc_carriers_size_4k;
                             d_ac_carriers = ac_carriers_4k;
@@ -218,6 +234,14 @@ namespace gr {
                         break;
                     case 8192:
                         {
+                            d_active_carrier_aux = 432;
+                            d_data_carrier_aux = 384;
+                            d_zeros_on_left = 1288;
+                            d_one_seg_start = 2592;
+                            first_ac_carrier_position = 48;
+                            last_ac_carrier_position = 48+8;
+                            first_tmcc_carrier_position = 24 ;
+                            last_tmcc_carrier_position = 28;
                             d_tmcc_carriers = tmcc_carriers_8k;
                             d_tmcc_carriers_size = tmcc_carriers_size_8k;
                             d_ac_carriers = ac_carriers_8k;
@@ -264,7 +288,7 @@ namespace gr {
                         else 
                         {
                             // carrier_out is thus a data carrier. 
-                            d_data_carriers_out[symbol_index*d_data_carriers_size + d_segments_positions[carrier_in/d_data_carriers_per_segment]*d_data_carriers_per_segment + (carrier_in%d_data_carriers_per_segment)] =  644 + carrier_out; 
+                            d_data_carriers_out[symbol_index*d_data_carriers_size + d_segments_positions[carrier_in/d_data_carriers_per_segment]*d_data_carriers_per_segment + (carrier_in%d_data_carriers_per_segment)] =  d_zeros_on_left + carrier_out; 
                             //d_data_carriers_out[symbol_index*d_data_carriers_size + (carrier_in%d_data_carriers_per_segment)] =  carrier_out; 
 
                             //d_data_carriers_out[symbol_index*d_data_carriers_size + carrier_in] = carrier_out; 
@@ -293,32 +317,25 @@ namespace gr {
                                     int in_count = 0;
 
                     // copy the input at the right carriers
-                    for (carrier = 0 ; carrier < 192; carrier++) 
+                    for (carrier = 0 ; carrier < d_data_carrier_aux; carrier++) 
                         //out[i*d_fft_length+carrier] = in[i*d_active_carriers+carrier-d_zeros_on_left];
-                        if ((d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] >= 644 + 1296) && (d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] < 644+216+1296))
-                            out[i*216  - 644   - 1296 + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*192 + in_count++];
-
-                            
-                          
-                    
-
+                        if ((d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] >= d_zeros_on_left + d_one_seg_start) && (d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier] < d_zeros_on_left+d_active_carrier_aux+d_one_seg_start))
+                            out[i*d_active_carrier_aux  - d_zeros_on_left   - d_one_seg_start + d_data_carriers_out[d_data_carriers_size*d_current_symbol + carrier]] = in[i*d_data_carrier_aux + in_count++];
 
                    // I now set the scattered pilots 
                     for (int current_sp_carrier = 3*d_current_symbol; current_sp_carrier < d_active_carriers-1; current_sp_carrier+=12) {
-                        if ((current_sp_carrier >= 1296) && (current_sp_carrier < 1296 + 216))
-                            out[i*216 + current_sp_carrier-1296] = d_pilot_values[current_sp_carrier]; 
+                        if ((current_sp_carrier >= d_one_seg_start) && (current_sp_carrier < d_one_seg_start + d_active_carrier_aux ))
+                            out[i*d_active_carrier_aux  + current_sp_carrier-d_one_seg_start] = d_pilot_values[current_sp_carrier]; 
                     }
 
                     // I now assign the tmcc carriers with the PRBS
-                    for (int current_tmcc_carrier = 12; current_tmcc_carrier <= 13; current_tmcc_carrier++) {
-                        //if ((d_tmcc_carriers[current_tmcc_carrier] >= 2592) && (d_tmcc_carriers[current_tmcc_carrier] < 2592 + 432))
-                            out[i*216 + d_tmcc_carriers[current_tmcc_carrier]-1296] = d_pilot_values[d_tmcc_carriers[current_tmcc_carrier]]; 
+                    for (int current_tmcc_carrier = first_tmcc_carrier_position; current_tmcc_carrier < last_tmcc_carrier_position; current_tmcc_carrier++) {
+                            out[i*d_active_carrier_aux  + d_tmcc_carriers[current_tmcc_carrier]-d_one_seg_start] = d_pilot_values[d_tmcc_carriers[current_tmcc_carrier]]; 
                     }
 
                     // I now assign the ac carriers with the PRBS
-                    for (int current_ac_carrier = 24; current_ac_carrier < 24+4; current_ac_carrier++) {
-                        //if ((d_ac_carriers[current_ac_carrier] >= 2592) && (d_ac_carriers[current_ac_carrier] < 2592 + 432))
-                            out[i*216 + d_ac_carriers[current_ac_carrier]-1296] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
+                    for (int current_ac_carrier = first_ac_carrier_position; current_ac_carrier < last_ac_carrier_position; current_ac_carrier++) {
+                            out[i*d_active_carrier_aux  + d_ac_carriers[current_ac_carrier]-d_one_seg_start] = d_pilot_values[d_ac_carriers[current_ac_carrier]]; 
                     }
 
 

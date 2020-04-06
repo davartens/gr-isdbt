@@ -79,12 +79,12 @@
     <sink>
         <name>in</name>
         <type>complex</type>
-        <vlen>216</vlen>
+        <vlen>108*2**($mode-1)</vlen>
     </sink>
     <source>
         <name>out</name>
         <type>complex</type>
-        <vlen>256</vlen>
+        <vlen>512/(2**(3-$mode))</vlen>
     </source>
 
 </block>
